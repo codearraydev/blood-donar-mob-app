@@ -4,7 +4,60 @@ import LinearGradient from 'react-native-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { emailValidator, passwordloginValidator } from '../../shared/validators/validator'
 import { SvgFacebook, SvgGoogle, SvgLine, SvgLogo } from './../../components/svg'
-const Login =  ({ navigation }) => (
+const Login = ({ navigation }) => {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [isloading, setIslaoding] = useState(false)
+
+
+    const onLoginStart = () => {
+
+        if (email === '') {
+            Alert.alert('Email is required.')
+            return
+        }
+
+        if (password === '') {
+            Alert.alert("Password is required.")
+            return
+        }
+
+
+        //login api integrated
+        setIslaoding(true)
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "email": email,
+            "password": password
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://us-central1-blood-donar-project.cloudfunctions.net/app/userLogin", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                setIslaoding(false)
+                if (result.status == 0) {
+                    Alert.alert(result.message)
+                    return
+                }
+                navigation.navigate('BottomTabs')
+                //Alert.alert(JSON.stringify(result))
+            })
+            .catch(error => console.log('error', error));
+
+
+
+    }
+    return (
         <SafeAreaView style={{ flex: 1, }}>
             <KeyboardAvoidingView style={{ flex: 1, }}>
                 <LinearGradient colors={['#F7FAFF', '#FCFAFE', '#FCFAFE']} style={styles.Mview}>
@@ -28,18 +81,23 @@ const Login =  ({ navigation }) => (
                                 Email
                             </Text>
                             <TextInput style={styles.tinput}
-                                placeholder="Enter your email" 
+                                placeholder="Enter your email"
                                 placeholderTextColor={'grey'}
-                                />
+                                value={email}
+                                onChangeText={(value) => setEmail(value)}
+
+                            />
                         </View>
                         <View style={styles.midview}>
                             <Text style={styles.txt}>
                                 Password
                             </Text>
                             <TextInput style={styles.tinput}
-                                placeholder="Enter your password" 
+                                placeholder="Enter your password"
                                 placeholderTextColor={'grey'}
-                                />
+                                value={password}
+                                onChangeText={(value) => setPassword(value)}
+                            />
                         </View>
                         <View style={styles.forgetview}>
                             <TouchableOpacity>
@@ -52,9 +110,12 @@ const Login =  ({ navigation }) => (
                     <View style={styles.thirdview}>
 
 
-                        <TouchableOpacity style={styles.continuebtn} onPress={() => navigation.navigate('BottomTabs')}>
+                        <TouchableOpacity disabled={isloading} style={styles.continuebtn}
+                            onPress={() => onLoginStart()}
+                        //    onPress={() => navigation.navigate('BottomTabs')}
+                        >
                             <Text style={styles.continuetxt}>
-                                Login
+                                {isloading ? <ActivityIndicator color={'#fff'} /> : "Login"}
 
                             </Text>
                         </TouchableOpacity>
@@ -69,10 +130,10 @@ const Login =  ({ navigation }) => (
                     </View>
                     <View style={styles.forthview}>
                         <View style={styles.loginwith}>
-                            <SvgGoogle/>
-                            <SvgFacebook/>
+                            <SvgGoogle />
+                            <SvgFacebook />
                         </View>
-                        <TouchableOpacity onPress={()=> navigation.navigate("SignUp")}>
+                        <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
 
 
                             <Text style={styles.bytxt}>
@@ -84,7 +145,8 @@ const Login =  ({ navigation }) => (
                 </LinearGradient>
             </KeyboardAvoidingView>
         </SafeAreaView>
-)
+    )
+}
 
 
 export default Login
@@ -231,9 +293,9 @@ const styles = StyleSheet.create({
 
 
     },
-    loginwith:{
-        flexDirection:'row',
-        alignItems:'center'
+    loginwith: {
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     pritxt: {
         color: '#0315B5',
