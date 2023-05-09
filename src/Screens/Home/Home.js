@@ -9,6 +9,8 @@ const Home = () => {
   const [searchList, setSearchList] = useState()
   const [isLoading, setIsloading] = useState(false)
 
+  const [searchValue , setSearchValue] = useState('')
+
   useEffect(() => {
 
     loadSearchItems()
@@ -86,9 +88,21 @@ const Home = () => {
         </View>
 
         <View style={styles.sectopview}>
-          <View style={styles.dateofbirth}>
+          <TextInput
+            style={{color: 'black', fontSize: 12 , padding: 10, borderWidth: 1, borderColor: 'grey', width: '90%', height: 38, borderRadius: 5, marginTop: 10 }}
+            placeholder={"Zaraj Housing Society, Islamabad"}
+            placeholderTextColor='grey'
+          />
+
+          <TextInput
+            style={{color: 'black', fontSize: 12 , padding: 10, borderWidth: 1, borderColor: 'grey', width: '90%', height: 38, borderRadius: 5, marginTop: 10 }}
+            placeholder={"Search by blood Group, blood bank"}
+            placeholderTextColor='grey'
+
+          />
+          {/* <View style={styles.dateofbirth}>
             <TextInput style={{ color: 'black', fontSize: 12 }}
-              editable={false}
+             // editable={false}
               placeholder={"Zaraj Housing Society, Islamabad"}
               placeholderTextColor='grey'
 
@@ -97,13 +111,13 @@ const Home = () => {
           </View>
           <View style={styles.dateofbirth}>
             <TextInput style={{ color: 'black', fontSize: 12 }}
-              editable={false}
+              // editable={false}
               placeholder={"Search by blood Group, blood bank"}
               placeholderTextColor='grey'
 
             />
             <SvgTxtSearch />
-          </View>
+          </View> */}
         </View>
         <View style={styles.top}>
           <Text style={styles.doc}>
