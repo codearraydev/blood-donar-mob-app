@@ -9,6 +9,7 @@ import Splash from './src/Screens/Splash/Splash';
 import CardDetail from './src/Screens/Home/CardDetail';
 import CardDetailNext from './src/Screens/Home/CardDetailNext';
 import DonarBottomTab from './src/Screens/BottomTabs/DonarBottomTab';
+import PatientInfo from './src/Screens/Donar/PatientInfo';
 
 
 const Stack = createStackNavigator();
@@ -24,6 +25,7 @@ const App =()=>{
             <Stack.Screen name="DonarBottomTabs" component={DonarBottomTab} />
             <Stack.Screen name="Splash" component={Splash} />
             <Stack.Screen name="CardDetail" component={CardDetail} />
+            <Stack.Screen name="PatientInfo" component={PatientInfo} />
             <Stack.Screen name="CardDetailNext" component={CardDetailNext} />
          </Stack.Navigator>
      </NavigationContainer>

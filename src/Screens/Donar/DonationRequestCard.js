@@ -2,9 +2,9 @@ import { StyleSheet, Text, View,TouchableOpacity,Image } from 'react-native'
 import React from 'react'
 import { SvgCardLine, SvgDistance, SvgMap, SvgMapText, SvgTime } from '../../components/svg'
 
-const DonationRequestCard = () => {
+const DonationRequestCard = (props) => {
   return (
-    <TouchableOpacity style={styles.midview}>
+    <TouchableOpacity style={styles.midview} onPress={()=> props.navigation.navigate('PatientInfo') }>
         <View style={styles.card}>
                 <View style={styles.card1}>
                     <View style={styles.subcard}>
@@ -46,7 +46,7 @@ const DonationRequestCard = () => {
             <View style={styles.sbview1}>
                 <View style={{ flexDirection: 'row', marginTop: 2 }}>
                     <View style={styles.icon}>
-                    <SvgMap />
+                    <SvgMap color={"#fc7474"} />
                     </View>
                    
                     <Text style={styles.loc}>

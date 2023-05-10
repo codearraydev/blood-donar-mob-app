@@ -9,6 +9,7 @@ import { SvgBloodDonation, SvgCalender, SvgdonarTab, SvgHome, SvgProfile, SvgSea
 import Search from '../Search/Search';
 import SearchResult from '../SearchResult/SearchResult';
 import DonarHome from '../Donar/DonarHome';
+import Appointment from '../Donar/Appointment';
 
 const Tab = createBottomTabNavigator()
 const DonarBottomTab= ({ navigation }) => {
@@ -43,7 +44,7 @@ const DonarBottomTab= ({ navigation }) => {
         )
       }}
       />
-       <Tab.Screen name="Search" component={Search} options={{
+       <Tab.Screen name="Appointment" component={Appointment} options={{
         tabBarIcon: ({ focused }) => (
           <View style={{ alignItems: 'center', 'justifyContent': 'center' }}>
             {focused ? <SvgCalender color="#ff478c" /> : <SvgCalender color="#BFBFBF" />}
