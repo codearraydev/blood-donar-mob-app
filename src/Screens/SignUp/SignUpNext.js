@@ -88,6 +88,11 @@ const SignUp = ({ navigation, route }) => {
                                 errormsg:result.message
                             })
                         }
+                        else if(result.message == "Phone number already exists"){
+                            navigation.navigate("SignUp",{
+                                errormsg:result.message
+                            })
+                        }
                         Alert.alert("Error",result.message)
                     }
                 })
@@ -145,7 +150,7 @@ const SignUp = ({ navigation, route }) => {
                                         placeholder={"Select your DOB"}
                                         value={dob}
                                     />
-                                    <SvgCalender />
+                                    <SvgCalender color={'#cecece'}/>
                                 </TouchableOpacity>
                                 {datePicker && (
                                     <DateTimePicker
@@ -210,6 +215,9 @@ const SignUp = ({ navigation, route }) => {
                             <TouchableOpacity style={styles.continuebtn} onPress={() => SignupFun()}>
                                 <Text style={styles.continuetxt}> {loading ? <ActivityIndicator color={'white'} /> : 'Continue'}</Text>
                             </TouchableOpacity>
+                            {errormsg?
+                                <Text style={styles.error}>{errormsg}</Text> :null   
+                        }
                             <View style={styles.lineview}>
                                 <SvgLine />
                                 <Text style={styles.ltxt}>

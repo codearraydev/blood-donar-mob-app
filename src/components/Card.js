@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Alert } from 'react-native'
+import { StyleSheet, Text, View, Image, Alert, TouchableOpacity } from 'react-native'
 import { SvgCardLine, SvgDistance, SvgHomeLogo, SvgMap, SvgMapText, SvgNotification, SvgTxtSearch } from './svg'
 import React, { useEffect } from 'react'
 
@@ -8,7 +8,7 @@ const Card = (props) => {
     //     Alert.alert(JSON.stringify(props.orgDetails.organizationName))
     // },[])
     return (
-        <View style={styles.midview}>
+        <TouchableOpacity style={styles.midview} onPress={()=>props.navigation.navigate("CardDetail")}>
             <View style={styles.card}>
                 <View style={styles.card1}>
                     <View style={styles.subcard}>
@@ -20,7 +20,7 @@ const Card = (props) => {
                                 }}
                             />
                         </View>
-                        <View>
+                        <View style={{marginLeft:10}}>
                             <Text style={styles.name}>
                                 {props.orgDetails.organizationName}
                             </Text>
@@ -49,7 +49,7 @@ const Card = (props) => {
                     </Text>
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     },
     subcard: {
         width: '80%', alignItems: 'center',
-        justifyContent: 'space-between',
+        
 
         flexDirection: 'row'
     },

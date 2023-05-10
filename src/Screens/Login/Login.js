@@ -6,8 +6,8 @@ import { emailValidator, passwordloginValidator } from '../../shared/validators/
 import { SvgFacebook, SvgGoogle, SvgLine, SvgLogo } from './../../components/svg'
 const Login = ({ navigation }) => {
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('admin@gmail.com')
+    const [password, setPassword] = useState('12345678')
     const [isloading, setIslaoding] = useState(false)
 
 
@@ -49,7 +49,8 @@ const Login = ({ navigation }) => {
                     Alert.alert(result.message)
                     return
                 }
-                navigation.navigate('BottomTabs')
+               // navigation.navigate('BottomTabs')
+                navigation.navigate('DonarBottomTabs')
                 //Alert.alert(JSON.stringify(result))
             })
             .catch(error => console.log('error', error));

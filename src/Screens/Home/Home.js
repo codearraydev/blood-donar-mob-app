@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 import { SvgCardLine, SvgDistance, SvgHelp, SvgHomeLogo, SvgMap, SvgMapText, SvgNotification, SvgTxtSearch } from '../../components/svg'
 import Card from '../../components/Card'
-const Home = () => {
+const Home = ({navigation}) => {
 
 
   const [searchList, setSearchList] = useState()
@@ -63,23 +63,13 @@ const Home = () => {
         <View style={styles.topcard}>
           <View style={styles.gradview}>
             <View style={styles.coltxt}>
-              <Text style={styles.gradtxt}>
-                Your
-              </Text>
-              <Text style={styles.gradtxt1}>
-                {' '}Strength
-              </Text>
-              <Text style={styles.gradtxt}>
-                {' '}and
-              </Text>
-              <Text style={styles.gradtxt2}>
-                {' '}Courage
-              </Text>
+              <Text style={styles.gradtxt}>Your</Text>
+              <Text style={styles.gradtxt1}>{' '}Strength</Text>
+              <Text style={styles.gradtxt}>{' '}and</Text>
+              <Text style={styles.gradtxt2}>{' '}Courage</Text>
             </View>
             <View style={styles.coltxt1}>
-              <Text style={styles.gradtxt}>
-                inspire us all.
-              </Text>
+              <Text style={styles.gradtxt}>inspire us all.</Text>
             </View>
           </View>
           <View style={styles.gradview1}>
@@ -100,24 +90,6 @@ const Home = () => {
             placeholderTextColor='grey'
 
           />
-          {/* <View style={styles.dateofbirth}>
-            <TextInput style={{ color: 'black', fontSize: 12 }}
-             // editable={false}
-              placeholder={"Zaraj Housing Society, Islamabad"}
-              placeholderTextColor='grey'
-
-            />
-            <SvgMap />
-          </View>
-          <View style={styles.dateofbirth}>
-            <TextInput style={{ color: 'black', fontSize: 12 }}
-              // editable={false}
-              placeholder={"Search by blood Group, blood bank"}
-              placeholderTextColor='grey'
-
-            />
-            <SvgTxtSearch />
-          </View> */}
         </View>
         <View style={styles.top}>
           <Text style={styles.doc}>
@@ -162,7 +134,7 @@ const Home = () => {
               :
               <FlatList
                 data={searchList}
-                renderItem={({ item }) => <Card orgDetails={item} />}
+                renderItem={({ item }) => <Card orgDetails={item} navigation={navigation}/>}
                 keyExtractor={item => Math.random().toString()}
               />
             // <Card />
@@ -186,7 +158,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F3F3F3',
     alignItems: 'center',
-    justifyContent: 'space-between'
+   
   },
   top: {
     height: 30,

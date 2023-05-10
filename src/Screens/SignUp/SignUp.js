@@ -110,6 +110,9 @@ const SignUp = ({ navigation }) => {
                             <TouchableOpacity style={styles.continuebtn} onPress={() => SignupFun()}>
                             <Text style={styles.continuetxt}> {isloading ? <ActivityIndicator color={'white'} /> : 'Next'}</Text>
                             </TouchableOpacity>
+                            {(route.params)?
+                            <Text style={styles.error}>{route.params.errormsg}</Text> :null   
+                        }
                             <View style={styles.lineview}>
                                 <SvgLine />
                                 <Text style={styles.ltxt}>
