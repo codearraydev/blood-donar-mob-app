@@ -4433,7 +4433,7 @@ export function SvgMap(props) {
         <Path
           data-name="Path 5809"
           d="M9.794 1A4.794 4.794 0 005 5.794c0 2.532 4.271 7.888 4.454 8.119a.436.436 0 00.68 0c.183-.231 4.454-5.587 4.454-8.119A4.794 4.794 0 009.794 1zm0 6.1a1.743 1.743 0 111.743-1.743A1.743 1.743 0 019.794 7.1z"
-          fill="#fc7474"
+          fill={props.color}
           transform="translate(-5 -1)"
         />
       </G>
@@ -6581,6 +6581,71 @@ export function SvgPicker(props) {
           fill="#4024b8"
           transform="translate(-1 -2)"
         />
+      </G>
+    </Svg>
+  )
+}
+export function SvgBloodGroup(props) {
+  return (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={109.551}
+      height={133.687}
+      viewBox="0 0 109.551 133.687"
+      {...props}
+    >
+      <Defs>
+        <LinearGradient
+          id="b"
+          x1={0.5}
+          y1={1.01}
+          x2={0.5}
+          y2={0.019}
+          gradientUnits="objectBoundingBox"
+        >
+          <Stop offset={0} stopColor="#e21188" />
+          <Stop offset={1} stopColor="#f62f4a" />
+        </LinearGradient>
+      </Defs>
+      <G data-name="Group 6672">
+        <G data-name="Search results for Blood drop - Flaticon-12 (2)">
+          <Path
+            data-name="Path 6388"
+            d="M16.707 15.608L9.529.474a.829.829 0 00-1.5 0L.853 15.608a8.773 8.773 0 0015.342 8.449 8.729 8.729 0 00.512-8.449zM8.32 23.01a4.206 4.206 0 004.2-4.2.829.829 0 111.658 0 5.867 5.867 0 01-5.86 5.86.829.829 0 010-1.659zm0 0"
+            fill="#fff"
+            transform="translate(-160.19 -589.179) translate(200.72 679)"
+          />
+        </G>
+        <G data-name="Drop Icons &amp; Symbols-12 (1)">
+          <Path
+            data-name="Path 6394"
+            d="M103.027 86.549a30.959 30.959 0 01-29.689-22.094c-1.937-6.416-1.617-13.017.943-20.191A107.847 107.847 0 0184 24.578c4.362-7.174 13.876-19.9 15.745-22.4a4.223 4.223 0 015.928-.825 3.752 3.752 0 01.775.775 288 288 0 012.021 2.61A210.136 210.136 0 01124.7 29.057c3.317 5.944 6.618 12.411 8.353 19.517 2.391 9.733.354 18.692-6.046 26.607A29.631 29.631 0 01107.27 86.3a35.445 35.445 0 01-4.243.249z"
+            fill="#de1340"
+            transform="translate(-160.19 -589.179) translate(111.91 606.504)"
+          />
+          <G
+            transform="translate(-160.19 -589.179) translate(111.91 606.504) translate(48.28 -17.32)"
+            filter="url(#a)"
+          >
+            <Path
+              data-name="Path 6395"
+              d="M134.055 82.394a28 28 0 01-18.642 10.491A29.289 29.289 0 0183.3 72.256c-1.953-6.5-1.347-12.832.909-19.147a105.636 105.636 0 019.565-19.366c3.84-6.332 11.889-17.261 15.644-22.262a2.55 2.55 0 013.57-.505 3.012 3.012 0 01.472.455c.674.859 1.347 1.718 1.987 2.577a212.6 212.6 0 0116.116 24.132c3.385 6.079 6.534 12.293 8.184 19.1 2.307 9.329.286 17.766-5.692 25.159z"
+              transform="translate(-56.63 9.03)"
+              fill="url(#b)"
+            />
+          </G>
+        </G>
+        <Text
+          data-name="B+"
+          transform="translate(-160.19 -589.179) translate(207 664)"
+          fill="#fff"
+          fontSize={16}
+          fontFamily="SegoeUI, Segoe UI"
+        >
+          <TSpan x={0} y={0}>
+            {props.group}
+          </TSpan>
+        </Text>
       </G>
     </Svg>
   )

@@ -54,7 +54,7 @@ const DonarHome = ({ navigation }) => {
                                 placeholder={"Islambad"}
 
                             />
-                            <SvgMap />
+                            <SvgMap color={"#fc7474"}/>
                         </View>
                     </View>
                     <View style={styles.bloodview}>
@@ -73,7 +73,9 @@ const DonarHome = ({ navigation }) => {
                         See All
                     </Text>
                 </View>
-                <DonationRequestCard/>
+                <DonationRequestCard
+                    navigation={navigation}
+                />
                 {/* <DonationRequestCard/> */}
                 <View style={styles.top}>
                     <Text style={styles.doc}>
