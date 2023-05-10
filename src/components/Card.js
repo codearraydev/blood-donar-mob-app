@@ -4,11 +4,11 @@ import React, { useEffect } from 'react'
 
 const Card = (props) => {
 
-    // useEffect(() => {
-    //     Alert.alert(JSON.stringify(props.orgDetails.organizationName))
-    // },[])
+    useEffect(() => {
+        Alert.alert(JSON.stringify(props.orgDetails.id))
+    },[])
     return (
-        <TouchableOpacity style={styles.midview} onPress={()=>props.navigation.navigate("CardDetail")}>
+        <TouchableOpacity style={styles.midview} onPress={() => props.navigation.navigate("CardDetail", { bankName: props.orgDetails.organizationName, bankId: props.orgDetails.id })}>
             <View style={styles.card}>
                 <View style={styles.card1}>
                     <View style={styles.subcard}>
@@ -20,7 +20,7 @@ const Card = (props) => {
                                 }}
                             />
                         </View>
-                        <View style={{marginLeft:10}}>
+                        <View style={{ marginLeft: 10 }}>
                             <Text style={styles.name}>
                                 {props.orgDetails.organizationName}
                             </Text>
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     },
     subcard: {
         width: '80%', alignItems: 'center',
-        
+
 
         flexDirection: 'row'
     },

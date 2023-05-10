@@ -1,21 +1,29 @@
-import { StyleSheet, Text, View, SafeAreaView, TextInput, Image, FlatList, ScrollView, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, TextInput, Image, FlatList, ScrollView, ActivityIndicator, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 import { SvgCardLine, SvgDistance, SvgHelp, SvgHomeLogo, SvgMap, SvgMapText, SvgNotification, SvgTxtSearch } from '../../components/svg'
 import Card from '../../components/Card'
-const Home = ({navigation}) => {
+import { useSafeAreaFrame } from 'react-native-safe-area-context'
+import { getUserAsyncData } from '../../shared/core/DataStore'
+const Home = ({ navigation }) => {
 
 
+  const [name, setName] = useState('')
+  const [userId, setUserId] = useState('')
   const [searchList, setSearchList] = useState()
   const [isLoading, setIsloading] = useState(false)
-
-  const [searchValue , setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState('')
 
   useEffect(() => {
+    getUserAsyncData().then((res => {
+      setName(res.name)
+      setUserId(res.id)
+    }))
+  }, [])
 
+  useEffect(() => {
     loadSearchItems()
     //call the fucking function
-
   }, [])
 
 
@@ -51,7 +59,7 @@ const Home = ({navigation}) => {
 
         <View style={styles.top}>
           <Text style={styles.toptxt}>
-            Hello, Emma
+            Hello, {name}
           </Text>
           <SvgNotification />
         </View>
@@ -79,13 +87,13 @@ const Home = ({navigation}) => {
 
         <View style={styles.sectopview}>
           <TextInput
-            style={{color: 'black', fontSize: 12 , padding: 10, borderWidth: 1, borderColor: 'grey', width: '90%', height: 38, borderRadius: 5, marginTop: 10 }}
+            style={{ color: 'black', fontSize: 12, padding: 10, borderWidth: 1, borderColor: 'grey', width: '90%', height: 38, borderRadius: 5, marginTop: 10 }}
             placeholder={"Zaraj Housing Society, Islamabad"}
             placeholderTextColor='grey'
           />
 
           <TextInput
-            style={{color: 'black', fontSize: 12 , padding: 10, borderWidth: 1, borderColor: 'grey', width: '90%', height: 38, borderRadius: 5, marginTop: 10 }}
+            style={{ color: 'black', fontSize: 12, padding: 10, borderWidth: 1, borderColor: 'grey', width: '90%', height: 38, borderRadius: 5, marginTop: 10 }}
             placeholder={"Search by blood Group, blood bank"}
             placeholderTextColor='grey'
 
@@ -134,7 +142,7 @@ const Home = ({navigation}) => {
               :
               <FlatList
                 data={searchList}
-                renderItem={({ item }) => <Card orgDetails={item} navigation={navigation}/>}
+                renderItem={({ item }) => <Card userId={userId} orgDetails={item} navigation={navigation} />}
                 keyExtractor={item => Math.random().toString()}
               />
             // <Card />
@@ -158,7 +166,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F3F3F3',
     alignItems: 'center',
-   
+
   },
   top: {
     height: 30,

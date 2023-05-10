@@ -4,9 +4,14 @@ import LinearGradient from 'react-native-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { emailValidator, passwordloginValidator } from '../../shared/validators/validator'
 import { SvgFacebook, SvgGoogle, SvgLine, SvgLogo } from './../../components/svg'
+import { getUserAsyncData, setUserAsyncData } from '../../shared/core/DataStore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Login = ({ navigation }) => {
 
-    const [email, setEmail] = useState('admin@gmail.com')
+
+
+
+    const [email, setEmail] = useState('irfan@gmail.com')
     const [password, setPassword] = useState('12345678')
     const [isloading, setIslaoding] = useState(false)
 
@@ -49,9 +54,24 @@ const Login = ({ navigation }) => {
                     Alert.alert(result.message)
                     return
                 }
-               // navigation.navigate('BottomTabs')
-                navigation.navigate('DonarBottomTabs')
-                //Alert.alert(JSON.stringify(result))
+
+                setUserAsyncData(result.data).then(res => {
+                    // Alert.alert("Data saved success...!!!")
+
+                    if (result.data.role == 'reciver') {
+                        navigation.navigate('BottomTabs')
+                    } else {
+                        navigation.navigate('DonarBottomTabs')
+                    }
+                }).catch(error => {
+                    console.log("error", error)
+                })
+
+
+
+                //
+                // 
+
             })
             .catch(error => console.log('error', error));
 
