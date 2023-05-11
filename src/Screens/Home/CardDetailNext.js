@@ -58,7 +58,11 @@ const CardDetailNext = ({ navigation, route }) => {
                 "pat_name": data.patientname,
                 "pat_phoneno": data.applicantnum,
                 "pat_gender": "male",
-                "pat_bloodType": data.bloodgroup
+                "pat_bloodType": data.bloodgroup,
+                "bloodBags": data.bloodbags,
+                "required_Date": data.surgerydate,
+                "pat_detail": detail.value,
+                "address": address.value
             });
 
             var requestOptions = {
@@ -67,6 +71,8 @@ const CardDetailNext = ({ navigation, route }) => {
                 body: raw,
                 redirect: 'follow'
             };
+
+            Alert.alert(raw)
 
 
 
