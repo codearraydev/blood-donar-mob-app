@@ -5,7 +5,7 @@ import React, { useEffect } from 'react'
 const Card = (props) => {
 
     useEffect(() => {
-        Alert.alert(JSON.stringify(props.orgDetails.id))
+       // Alert.alert(JSON.stringify(props.orgDetails.id))
     },[])
     return (
         <TouchableOpacity style={styles.midview} onPress={() => props.navigation.navigate("CardDetail", { bankName: props.orgDetails.organizationName, bankId: props.orgDetails.id })}>

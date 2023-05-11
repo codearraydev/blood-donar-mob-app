@@ -30,14 +30,19 @@ const Home = ({ navigation }) => {
   const loadSearchItems = () => {
     setIsloading(true)
     var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ik1aOXF5YkJwS21UMENNUGw4ZTA3IiwiaWF0IjoxNjgzNTMyODU0LCJleHAiOjE2ODM2MTkyNTR9.QW9YsaxGkzJQnbqwGLzte825hZWr8eeKnPhYKTvA304");
 
     // var raw = {};
+    var raw = JSON.stringify({
+      "search": searchValue
+    });
+
 
     var requestOptions = {
       method: 'POST',
       headers: myHeaders,
-      // body: raw,
+      body: raw,
       redirect: 'follow'
     };
 
@@ -86,15 +91,19 @@ const Home = ({ navigation }) => {
         </View>
 
         <View style={styles.sectopview}>
-          <TextInput
+          {/* <TextInput
             style={{ color: 'black', fontSize: 12, padding: 10, borderWidth: 1, borderColor: 'grey', width: '90%', height: 38, borderRadius: 5, marginTop: 10 }}
             placeholder={"Zaraj Housing Society, Islamabad"}
             placeholderTextColor='grey'
-          />
+          /> */}
 
           <TextInput
             style={{ color: 'black', fontSize: 12, padding: 10, borderWidth: 1, borderColor: 'grey', width: '90%', height: 38, borderRadius: 5, marginTop: 10 }}
             placeholder={"Search by blood Group, blood bank"}
+            value={searchValue}
+            onChangeText={text => setSearchValue(text)}
+            returnKeyType='done'
+            onSubmitEditing={() => loadSearchItems()}
             placeholderTextColor='grey'
 
           />
@@ -214,14 +223,14 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   sectopview: {
-    height: 110,
+    height: 70,
     width: '85%',
     marginTop: -10,
     borderRadius: 8,
     backgroundColor: '#ffff',
     elevation: 10,
     flexDirection: 'row',
-    //justifyContent:'space-around',
+    justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
     shadowColor: "#000",
