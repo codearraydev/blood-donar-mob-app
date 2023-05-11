@@ -11,6 +11,7 @@ import CardDetailNext from './src/Screens/Home/CardDetailNext';
 import DonarBottomTab from './src/Screens/BottomTabs/DonarBottomTab';
 import PatientInfo from './src/Screens/Donar/PatientInfo';
 import PatientInfoNext from './src/Screens/Donar/PatientInfoNext';
+import CaseInfo from './src/Screens/Search/CaseInfo';
 
 
 const Stack = createStackNavigator();
@@ -27,6 +28,7 @@ const App =()=>{
             <Stack.Screen name="Splash" component={Splash} />
             <Stack.Screen name="CardDetail" component={CardDetail} />
             <Stack.Screen name="PatientInfo" component={PatientInfo} />
+            <Stack.Screen name="CaseInfo" component={CaseInfo} />
             <Stack.Screen name="PatientInfoNext" component={PatientInfoNext} />
             <Stack.Screen name="CardDetailNext" component={CardDetailNext} />
          </Stack.Navigator>

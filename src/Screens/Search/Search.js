@@ -63,7 +63,7 @@ const Search = ({ navigation }) => {
           <FlatList
             style={{ flex: 1, width: '100%' }}
             data={myCases}
-            renderItem={({ item }) => <CaseItem orgDetails={item} />}
+            renderItem={({ item }) => <CaseItem orgDetails={item} navigation={navigation}/>}
             keyExtractor={item => Math.random().toString()}
           />
         </LinearGradient>

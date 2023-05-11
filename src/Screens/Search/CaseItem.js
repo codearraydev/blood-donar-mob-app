@@ -1,29 +1,11 @@
 import { StyleSheet, Text, View, Image, Alert, TouchableOpacity } from 'react-native'
 import { SvgCardLine, SvgDistance, SvgHomeLogo, SvgMap, SvgMapText, SvgNotification, SvgTxtSearch } from './../../components/svg'
 import React, { useEffect } from 'react'
+import { NavigationContainer } from '@react-navigation/native';
 const CaseItem = (props) => {
     return (
-        // <View style={{ flex: 1, padding: 10, width: '100%', backgroundColor: '#fff', marginTop: 10 }} >
-        //     <View style={{ flexDirection: 'column', justifyContent: 'space-around' }}>
-        //         <View>
-        //             <Text>ORG Name: {props.orgDetails.organizationName}</Text>
-        //             <Text>ORG Email: {props.orgDetails.organizationEmail}</Text>
-        //         </View>
-
-        //         <View>
-        //             <Text>Pat name: {props.orgDetails.pat_name}</Text>
-        //             <Text>Pat Phone: {props.orgDetails.pat_phoneno}</Text>
-        //         </View>
-        //     </View>
-
-        //     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 }}>
-        //         <Text>Case Status: {props.orgDetails.caseStatus}</Text>
-        //         <Text>Case Decision: {props.orgDetails.casedecision}</Text>
-        //     </View>
-
-        // </View >
-        <View style={styles.midview}>
-             <View style={styles.card}>
+        <TouchableOpacity style={styles.midview} onPress={() => props.navigation.navigate("CaseInfo")}>
+            <View style={styles.card}>
                 <View style={styles.card1}>
                     <View style={styles.subcard}>
                         <View>
@@ -34,66 +16,48 @@ const CaseItem = (props) => {
                                 }}
                             />
                         </View>
-                        <View style={{marginLeft:10}}>
-                            <Text style={styles.name}> {props.orgDetails.organizationName}</Text>
-
+                        <View style={{ marginLeft: 10 }}>
+                            <Text style={styles.name}>{props.orgDetails.organizationName}</Text>
+                            <Text style={styles.sname}>
+                                {props.orgDetails.organizationEmail}
+                            </Text>
                         </View>
-                        
+
                     </View>
                 </View>
-                {/* <View style={{ marginLeft: 10, flexDirection:'row' }}>
-                            <Text style={styles.name}>
-                                {props.orgDetails.organizationName}
-                            </Text>
-                            <Text style={styles.sname}>
-                            {props.orgDetails.organizationEmail}
-                            </Text>
-                        </View> */}
-                        <View style={styles.lview}>
-                
-                <View style={styles.namef}>
-                    <Text style={styles.nametxt}>Email:</Text>
-                    <Text style={styles.getfontxt}> {props.orgDetails.organizationEmail}</Text>
-                </View>
-            </View>
+
             </View>
             <SvgCardLine />
-           <Text style={styles.name}>Patient</Text>
+            <Text style={styles.name}>Patient</Text>
             <View style={styles.lview}>
-                <View style={styles.namef}>
+                <View style={styles.named}>
                     <Text style={styles.nametxt}>Name:</Text>
-                    <Text style={styles.getfontxt}>{props.orgDetails.pat_name}</Text>
+                    <Text style={styles.getnametxt}>{props.orgDetails.pat_name}</Text>
                 </View>
                 <View style={styles.namef}>
                     <Text style={styles.nametxt}>Contact:</Text>
-                    <Text style={styles.getfontxt}>{props.orgDetails.pat_phoneno}</Text>
+                    <Text style={styles.getnametxt}>{props.orgDetails.pat_phoneno}</Text>
                 </View>
-                {/* <View style={styles.namef}>
-                    <Text style={styles.statustxt}>Status</Text>
-                    <View style={styles.statusview}>
-                    <Text style={styles.stxt}>{props.orgDetails.caseStatus}</Text>
-                    </View>
-                    
-                </View> */}
+
             </View>
             <View style={styles.lview}>
-            <View style={styles.named}>
-                    <Text style={styles.statustxt}>Status</Text>
+                <View style={styles.named}>
+                    <Text style={styles.nametxt}>Status</Text>
                     <View style={styles.statusview}>
-                    <Text style={styles.stxt}>{props.orgDetails.caseStatus}</Text>
+                        <Text style={styles.stxt}>{props.orgDetails.caseStatus}</Text>
                     </View>
-                    
+
                 </View>
                 <View style={styles.namef}>
-                    <Text style={styles.statustxt}>Decision</Text>
+                    <Text style={styles.nametxt}>Decision</Text>
                     <View style={styles.decisionview}>
-                    <Text style={styles.dtxt}>{props.orgDetails.casedecision}</Text>
+                        <Text style={styles.dtxt}>{props.orgDetails.casedecision}</Text>
                     </View>
-                    
+
                 </View>
             </View>
-            
-        </View>
+
+        </TouchableOpacity>
     );
 }
 const styles = StyleSheet.create({
@@ -116,12 +80,12 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         padding: 10,
         elevation: 5,
-        alignSelf:'center'
+        alignSelf: 'center'
     },
     card: {
-        
+
         width: '95%',
-        marginBottom:8
+        marginBottom: 8
     },
     card1: {
         flexDirection: 'row',
@@ -150,80 +114,88 @@ const styles = StyleSheet.create({
         color: '#504F4F',
         fontSize: 12
     },
-    lview:{
-        flexDirection:'row',
-        width:'100%',
-        justifyContent:'space-between',
-        marginTop:2
+    lview: {
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'space-between',
+        marginTop: 2
 
     },
-    named:{
-        marginTop:5,
-        width:'70%',
-        flexDirection:'row',
-        alignItems:'center',
+    named: {
+        marginTop: 5,
+        width: '55%',
+        flexDirection: 'row',
+        alignItems: 'center',
     },
-    namef:{
-        marginTop:5,
-        width:'50%',
-        flexDirection:'row',
-        alignItems:'center',
+
+    namef: {
+        marginTop: 5,
+        width: '50%',
+        flexDirection: 'row',
+        alignItems: 'center',
     },
-    status:{
-        marginTop:5,
+    emailv: {
+        marginTop: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    status: {
+        marginTop: 5,
         width: '28%',
-        justifyContent:'space-between',
-        alignItems:'center',
-        flexDirection:'row'
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'row'
     },
-    nametxt:{
-        color:'#504F4F',
-        fontSize:12
+    nametxt: {
+        color: '#504F4F',
+        fontSize: 12
     },
-    getnametxt:{
-        color:'#262525',
-        fontSize:10,
-        fontWeight:'bold',
-        marginLeft:30
+    getnametxt: {
+        color: '#262525',
+        fontSize: 11,
+        fontWeight: 'bold',
+        marginLeft: 20
     },
-    getfontxt:{
-        color:'#262525',
-        fontSize:11,
-        fontWeight:'bold',
-        marginLeft:1
+    getfontxt: {
+        color: '#262525',
+        fontSize: 11,
+        fontWeight: 'bold',
+        marginLeft: 1
     },
-    getphonetxt:{
-        color:'#262525',
-        fontSize:12,
-        marginLeft:20
+    getphonetxt: {
+        color: '#262525',
+        fontSize: 12,
+        marginLeft: 20
     },
-    statustxt:{
-        color:'#504F4F',
-        fontSize:10
+    statustxt: {
+        color: '#504F4F',
+        fontSize: 10
     },
-    statusview:{
-        width:48,
-        height:15,
-        alignItems:'center',
-        backgroundColor:'#E4FFDE',
-        borderRadius:5,
-        
+    statusview: {
+        width: 60,
+        height: 18,
+        alignItems: 'center',
+        backgroundColor: '#E4FFDE',
+        borderRadius: 5,
+        marginLeft: 22
+
     },
-    stxt:{
-        fontSize:10,
-        color:'#039416'
+    stxt: {
+        fontSize: 11,
+        color: '#039416'
     },
-    decisionview:{
-        width:48,
-        height:15,
-        alignItems:'center',
-        backgroundColor:'#FFDEE9',
-        borderRadius:5,
-        
+    decisionview: {
+        width: 60,
+        height: 18,
+        alignItems: 'center',
+        backgroundColor: '#FFDEE9',
+        borderRadius: 5,
+        marginLeft: 22
+
     },
-    dtxt:{
-        fontSize:10,
-        color:'#CE7E99'
+    dtxt: {
+        fontSize: 11,
+        color: '#CE7E99'
     }
 })
 export default CaseItem;
