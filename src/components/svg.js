@@ -6640,7 +6640,7 @@ export function SvgBloodGroup(props) {
           transform="translate(-160.19 -589.179) translate(207 664)"
           fill="#fff"
           fontSize={16}
-          fontFamily="SegoeUI, Segoe UI"
+          // fontFamily="SegoeUI, Segoe UI"
         >
           <TSpan x={0} y={0}>
             {props.group}

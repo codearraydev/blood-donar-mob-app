@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 const CaseItem = (props) => {
     return (
-        <TouchableOpacity style={styles.midview} onPress={() => props.navigation.navigate("CaseInfo")}>
+        <TouchableOpacity style={styles.midview} onPress={() => props.navigation.navigate("CaseInfo", { caseId: props.orgDetails.CaseID })}>
             <View style={styles.card}>
                 <View style={styles.card1}>
                     <View style={styles.subcard}>

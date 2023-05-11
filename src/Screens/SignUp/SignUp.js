@@ -8,7 +8,7 @@ import { SvgFacebook, SvgGoogle, SvgLine, SvgSignUp } from '../../components/svg
 import { emailValidator, NameValidtor, PhoneValidator } from '../../shared/validators/validators';
 
 
-const SignUp = ({ navigation }) => {
+const SignUp = (props) => {
     const [selectedtab, setSelectedTab] = useState("reciver");
     const [name, setName] = useState({ value: "", error: "", status: false });
     const [phone, setPhone] = useState({ value: "", error: "", status: false });
@@ -24,7 +24,7 @@ const SignUp = ({ navigation }) => {
         setPhone(phoneerror)
         if (emailerror.error == "" && nameerror.error == "" && phoneerror.error == "") {
             setisLoading(true)
-            navigation.navigate("SignUpNext",{
+            props.navigation.navigate("SignUpNext",{
                 email: email.value, 
                 name:name.value, 
                 phone:phone.value, 
@@ -110,8 +110,8 @@ const SignUp = ({ navigation }) => {
                             <TouchableOpacity style={styles.continuebtn} onPress={() => SignupFun()}>
                             <Text style={styles.continuetxt}> {isloading ? <ActivityIndicator color={'white'} /> : 'Next'}</Text>
                             </TouchableOpacity>
-                            {(route.params)?
-                            <Text style={styles.error}>{route.params.errormsg}</Text> :null   
+                            {(props.route.params)?
+                            <Text style={styles.error}>{props.route.params.errormsg}</Text> :null   
                         }
                             <View style={styles.lineview}>
                                 <SvgLine />
