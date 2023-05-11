@@ -60,41 +60,52 @@ const CaseInfo = props => {
                     <Image source={require("./../../assets/profile.png")} style={styles.imgview} />
                   </View>
                 </View>
-                <View style={styles.subview1}>
+               
                   <Text style={styles.headingtxt}>{patientData?.pat_name}</Text>
-                  {/* <Text style={styles.subtxt}>Student ,17 years old, with history of congestive heart failure,</Text>
-                        <Text style={styles.subtxt}>coronary artery disease risk factors of hypertension and post</Text>
-                        <Text style={styles.subtxt}>post menopausal state.</Text> */}
-                  <View style={styles.lview}>
+                 
+                  
+               
+              </View>
+                <View style={styles.applicantview}>
+                {/* <View style={styles.lview}> */}
                     <View style={styles.named}>
                       <Text style={styles.nametxt}>Applicant Name:</Text>
+                      <View style={styles.txtview}>
                       <Text style={styles.getnametxt}>{patientData?.reciverName}</Text>
+                      </View>
+                     
                     </View>
                     <View style={styles.named}>
                       <Text style={styles.nametxt}>Applicant Contact:</Text>
+                      <View style={styles.txtview}>
                       <Text style={styles.getphonetxt}>{patientData?.pat_phoneno}</Text>
+                      </View>
                     </View>
 
-                  </View>
-                  <View style={styles.stview}>
-                    <View style={styles.namef}>
-                      <Text style={styles.casetxt}>Case Status</Text>
+                  {/* </View> */}
+                  {/* <View style={styles.stview}> */}
+                    <View style={styles.named}>
+                      <Text style={styles.nametxt}>Case Status:</Text>
+                      <View style={styles.txtview}>
                       <View style={styles.statusview}>
+
                         <Text style={styles.stxt}>{patientData && capitalizeFirstLetter(patientData?.caseStatus)}</Text>
                       </View>
+                      </View>
+
 
                     </View>
-                    <View style={styles.namef}>
-                      <Text style={styles.casetxt}>Case Decision</Text>
+                    <View style={styles.named}>
+                      <Text style={styles.nametxt}>Case Decision:</Text>
+                      <View style={styles.txtview}>
                       <View style={styles.decisionview}>
                         <Text style={styles.dtxt}>{patientData && capitalizeFirstLetter(patientData?.casedecision)}</Text>
                       </View>
+                      </View>
 
-                    </View>
+                    {/* </View> */}
                   </View>
                 </View>
-              </View>
-
               <View style={styles.secondview}>
                 <View style={styles.midview}>
                   <Text style={styles.txt}>
@@ -126,9 +137,7 @@ const CaseInfo = props => {
                 </View>
               </View>
 
-              {/* <TouchableOpacity style={styles.continuebtn} onPress={() => props.navigation.navigate('PatientInfoNext')}>
-            <Text style={styles.continuetxt}>Donation Request</Text>
-          </TouchableOpacity> */}
+             
             </>
           }
         </LinearGradient>
@@ -159,7 +168,7 @@ const styles = StyleSheet.create({
     marginLeft: 90
   },
   topview: {
-    height: 230,
+    height: 100,
     width: '95%',
     borderRadius: 10,
     backgroundColor: '#FFFFFF',
@@ -211,7 +220,7 @@ const styles = StyleSheet.create({
   },
   secondview: {
     marginVertical: 10,
-    height: 300,
+    height: 330,
     width: '95%',
     borderRadius: 10,
     backgroundColor: '#FFFFFF',
@@ -223,6 +232,25 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     alignItems: 'center',
+    elevation: 3,
+    paddingVertical: 8
+
+  },
+  applicantview: {
+    marginVertical: 10,
+    height: 120,
+    width: '95%',
+    paddingHorizontal: 10,
+    borderRadius: 10,
+    backgroundColor: '#FFFFFF',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    //alignItems: 'center',
     elevation: 3,
     paddingVertical: 8
 
@@ -257,6 +285,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '92%',
+    marginTop:10
   },
   group: {
     fontSize: 14,
@@ -290,7 +319,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 2,
     justifyContent: 'center',
-    alignItems: 'center'
+    //alignItems: 'center'
+    paddingHorizontal:10
 
   },
   stview: {
@@ -303,34 +333,30 @@ const styles = StyleSheet.create({
   },
   named: {
     marginTop: 5,
-    width: '55%',
+    //borderWidth:1,
+    justifyContent:'space-between',
     flexDirection: 'row',
     alignItems: 'center',
   },
-  namef: {
-    marginTop: 18,
-    paddingHorizontal: 10,
-    alignItems: 'center',
-  },
+ 
   nametxt: {
     color: '#262525',
-    fontSize: 12
+    fontSize: 12,
+    fontWeight:'bold',
+    textAlign:'left'
   },
-  casetxt: {
-    color: 'grey',
-    fontSize: 11
-  },
+ 
   getnametxt: {
     color: '#262525',
     fontSize: 11,
     fontWeight: 'bold',
-    marginLeft: 22
+   
   },
   getphonetxt: {
     color: '#262525',
     fontSize: 11,
     fontWeight: 'bold',
-    marginLeft: 12
+   
   },
   statusview: {
     width: 60,
@@ -338,8 +364,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#E4FFDE',
     borderRadius: 5,
-    marginTop: 5
-
+    marginTop: 5,
+   
   },
   stxt: {
     fontSize: 12,
@@ -352,7 +378,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFDEE9',
     borderRadius: 5,
-    marginTop: 5
+   
 
 
   },
@@ -360,5 +386,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#CE7E99',
     fontWeight: 'bold'
+  },
+  txtview:{
+    width:'30%'
   }
 })

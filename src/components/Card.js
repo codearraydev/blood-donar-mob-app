@@ -5,7 +5,7 @@ import React, { useEffect } from 'react'
 const Card = (props) => {
 
     useEffect(() => {
-       // Alert.alert(JSON.stringify(props.orgDetails.id))
+      console.log(JSON.stringify(props.orgDetails))
     },[])
     return (
         <TouchableOpacity style={styles.midview} onPress={() => props.navigation.navigate("CardDetail", { bankName: props.orgDetails.organizationName, bankId: props.orgDetails.id })}>
@@ -37,7 +37,7 @@ const Card = (props) => {
             <SvgCardLine />
             <View style={styles.sbview1}>
                 <View style={{ flexDirection: 'row', marginTop: 2 }}>
-                    <SvgMap />
+                    <SvgMap color={"#cecece"} />
                     <Text style={styles.loc}>
                         {'  '}{props.orgDetails.district}
                     </Text>
@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         padding: 5,
         elevation: 5,
+        alignSelf: 'center'
     },
     card: {
         flexDirection: 'row',
