@@ -42,7 +42,7 @@ const PatientInfo = ({navigation}) => {
                             </Text>
                             <View style={styles.loc}>
                               <SvgMap color={'#CECECE'} style={{marginRight:8}}/>
-                            <Text style={styles.txt1}>Autoimmune hemolytic anemia, Tuberclosis</Text>
+                            <Text style={styles.txt2}>National cancer Hospital Sector F DHA Phase II, Islamabad.</Text>
 
                             </View>
                         </View>
@@ -60,7 +60,7 @@ const PatientInfo = ({navigation}) => {
                         </View>
                     </View>
                     
-                    <TouchableOpacity style={styles.continuebtn} onPress={() => null()}>
+                    <TouchableOpacity style={styles.continuebtn} onPress={() => navigation.navigate('PatientInfoNext')}>
                     <Text style={styles.continuetxt}>Donation Request</Text>
                     </TouchableOpacity>
                 </LinearGradient>
@@ -173,6 +173,10 @@ txt1:{
   color:'#333333',
   fontSize:14
 },
+txt2:{
+  color:'#504F4F',
+  fontSize:12
+},
 loc:{
   flexDirection:'row',
   alignItems:'center'
@@ -198,7 +202,7 @@ group1:{
 continuebtn: {
   height: 35,
   borderRadius: 10,
-  width: "70%",
+  width: "80%",
   backgroundColor: '#FF478C',
   alignItems: 'center',
   justifyContent: 'center',

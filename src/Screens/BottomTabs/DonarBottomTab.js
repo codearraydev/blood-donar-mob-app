@@ -10,6 +10,7 @@ import Search from '../Search/Search';
 import SearchResult from '../SearchResult/SearchResult';
 import DonarHome from '../Donar/DonarHome';
 import Appointment from '../Donar/Appointment';
+import Profile from '../Profile/Profile';
 
 const Tab = createBottomTabNavigator()
 const DonarBottomTab= ({ navigation }) => {
@@ -86,7 +87,7 @@ const DonarBottomTab= ({ navigation }) => {
         )
       }}
       />
-      <Tab.Screen name="Profile" component={SearchResult} options={{
+      <Tab.Screen name="Profile" component={Profile} options={{
         tabBarIcon: ({ focused }) => (
           <View style={{ alignItems: 'center', 'justifyContent': 'center' }}>
             {focused ? <SvgProfile color="#ff478c" /> : <SvgProfile color="#BFBFBF" />}
