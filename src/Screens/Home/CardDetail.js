@@ -136,6 +136,7 @@ const CardDetail = (props) => {
                                 }}
                                 zIndex={1000}
                                 //zIndexInverse={3000}
+                                
                                 open={open}
                                 value={value}
                                 items={items}

@@ -6,7 +6,7 @@ import { getUserAsyncData } from '../../shared/core/DataStore';
 import moment from 'moment';
 
 
-const Profile = () => {
+const Profile = ({navigation}) => {
     const [profile, setProfile] = useState ([])
     useEffect(() => {
         getUserAsyncData().then((res => {

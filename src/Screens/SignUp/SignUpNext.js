@@ -118,7 +118,7 @@ const SignUp = ({ navigation, route }) => {
                         <View style={styles.secondview}>
 
                             <View style={[styles.midview,
-                            { zIndex: 1 }]}>
+                            { zIndex: open ? 1000 :1 }]}>
                                 <Text style={styles.txt}> Blood Group </Text>
                                 <DropDownPicker style={[styles.tinput, { minHeight: 20 }]}
                                     containerProps={{
@@ -236,7 +236,7 @@ const SignUp = ({ navigation, route }) => {
                                 <Text style={styles.acctxt}>
                                     Already have an account ?
                                 </Text>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={()=> navigation.navigate("Login")} >
 
 
                                     <Text style={styles.bytxt}>
@@ -354,7 +354,7 @@ const styles = StyleSheet.create({
         height: 65,
         marginTop: 8,
         width: '100%',
-        zIndex: -1,
+
         justifyContent: 'space-between',
     },
     txt: {

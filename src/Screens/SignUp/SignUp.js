@@ -15,7 +15,7 @@ const SignUp = (props) => {
     const [email, setEmail] = useState({ value: "", error: "", status: false });
     const [isloading, setisLoading] = useState(false)
 
-    const SignupFun = () =>{
+    const SignupFun = () => {
         let emailerror = emailValidator(email.value);
         let nameerror = NameValidtor(name.value);
         let phoneerror = PhoneValidator(phone.value)
@@ -24,12 +24,12 @@ const SignUp = (props) => {
         setPhone(phoneerror)
         if (emailerror.error == "" && nameerror.error == "" && phoneerror.error == "") {
             setisLoading(true)
-            props.navigation.navigate("SignUpNext",{
-                email: email.value, 
-                name:name.value, 
-                phone:phone.value, 
-                type:selectedtab 
-                })
+            props.navigation.navigate("SignUpNext", {
+                email: email.value,
+                name: name.value,
+                phone: phone.value,
+                type: selectedtab
+            })
         }
         setisLoading(false)
     }
@@ -49,7 +49,7 @@ const SignUp = (props) => {
                             <View style={styles.midview}>
                                 <Text style={styles.txt}>Register As</Text>
                                 <View style={styles.regas}>
-                                    <TouchableOpacity style={[styles.selectedbtn, { borderColor:selectedtab == "reciver" ? '#FCD0E3' : '#EDECF1' },]} onPress={() => setSelectedTab("reciver")}>
+                                    <TouchableOpacity style={[styles.selectedbtn, { borderColor: selectedtab == "reciver" ? '#FCD0E3' : '#EDECF1' },]} onPress={() => setSelectedTab("reciver")}>
                                         <Text style={styles.txtsel}>
                                             Patient
                                         </Text>
@@ -71,9 +71,9 @@ const SignUp = (props) => {
                                     onSubmitEditing={() => setName(NameValidtor(name.value))}
                                 />
                             </View>
-                            {name.error?
-                            <Text style={styles.error}>{name.error}</Text>:null
-}
+                            {name.error ?
+                                <Text style={styles.error}>{name.error}</Text> : null
+                            }
                             <View style={styles.midview}>
                                 <Text style={styles.txt}> Email </Text>
                                 <TextInput style={styles.tinput}
@@ -85,8 +85,8 @@ const SignUp = (props) => {
                                     onSubmitEditing={() => setEmail(emailValidator(email.value))}
                                 />
                             </View>
-                            {email.error?
-                            <Text style={styles.error}>{email.error}</Text>:null
+                            {email.error ?
+                                <Text style={styles.error}>{email.error}</Text> : null
                             }
                             <View style={styles.midview}>
                                 <Text style={styles.txt}> Phone Number </Text>
@@ -99,20 +99,20 @@ const SignUp = (props) => {
 
                                 />
                             </View>
-                            {phone.error?
-                            <Text style={styles.error}>{phone.error}</Text>:null
-}
-                           
+                            {phone.error ?
+                                <Text style={styles.error}>{phone.error}</Text> : null
+                            }
+
                         </View>
                         <View style={styles.thirdview}>
 
 
                             <TouchableOpacity style={styles.continuebtn} onPress={() => SignupFun()}>
-                            <Text style={styles.continuetxt}> {isloading ? <ActivityIndicator color={'white'} /> : 'Next'}</Text>
+                                <Text style={styles.continuetxt}> {isloading ? <ActivityIndicator color={'white'} /> : 'Next'}</Text>
                             </TouchableOpacity>
-                            {(props.route.params)?
-                            <Text style={styles.error}>{props.route.params.errormsg}</Text> :null   
-                        }
+                            {(props.route.params) ?
+                                <Text style={styles.error}>{props.route.params.errormsg}</Text> : null
+                            }
                             <View style={styles.lineview}>
                                 <SvgLine />
                                 <Text style={styles.ltxt}>
@@ -128,10 +128,10 @@ const SignUp = (props) => {
                                 <SvgFacebook />
                             </View>
                             <View style={styles.lastview}>
-                            <Text style={styles.acctxt}>
-                                Already have an account ?
+                                <Text style={styles.acctxt}>
+                                    Already have an account ?
                                 </Text>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={() => props.navigation.navigate("Login")} >
 
 
                                     <Text style={styles.bytxt}>
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start',
         fontSize: 11,
         marginLeft: 5,
-      },
+    },
     load: {
         color: "#ffff"
     },
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#4440BF',
     },
-    acctxt:{
+    acctxt: {
         //fontFamily: 'Plus Jakarta Sans',
         fontSize: 14,
         color: '#2D2D2D',
@@ -303,8 +303,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center'
     },
-    lastview:{
-        flexDirection:'row'
+    lastview: {
+        flexDirection: 'row'
     }
 
 

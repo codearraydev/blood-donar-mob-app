@@ -1946,7 +1946,7 @@ export function SvgSignUp(props) {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       width={188}
-      height={154}
+      height={165}
       viewBox="0 0 188 184"
       {...props}
     >

@@ -89,14 +89,7 @@ const Home = ({ navigation }) => {
             <SvgHomeLogo />
           </View>
         </View>
-
         <View style={styles.sectopview}>
-          {/* <TextInput
-            style={{ color: 'black', fontSize: 12, padding: 10, borderWidth: 1, borderColor: 'grey', width: '90%', height: 38, borderRadius: 5, marginTop: 10 }}
-            placeholder={"Zaraj Housing Society, Islamabad"}
-            placeholderTextColor='grey'
-          /> */}
-
           <TextInput
             style={{ color: 'black', fontSize: 12, padding: 10, borderWidth: 1, borderColor: 'grey', width: '90%', height: 38, borderRadius: 5, marginTop: 10 }}
             placeholder={"Search by blood Group, blood bank"}
@@ -150,7 +143,7 @@ const Home = ({ navigation }) => {
             isLoading ? <ActivityIndicator style={{ marginTop: 20 }} size={'large'} color={'blue'} />
               :
               <FlatList
-              style={{ flex: 1, width: '100%' }}
+                style={{ flex: 1, width: '100%' }}
                 data={searchList}
                 renderItem={({ item }) => <Card userId={userId} orgDetails={item} navigation={navigation} />}
                 keyExtractor={item => Math.random().toString()}
