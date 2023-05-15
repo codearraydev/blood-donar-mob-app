@@ -1,12 +1,38 @@
-import { StyleSheet, Text, View, SafeAreaView, TextInput, Image, FlatList, ScrollView, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, TextInput, Image, FlatList, ScrollView, ActivityIndicator, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 import { SvgCardLine, SvgDistance, SvgDonateBlood, SvgDown, SvgHelp, SvgHomeLogo, SvgMap, SvgMapText, SvgNotification, SvgTxtSearch } from '../../components/svg'
 import Card from '../../components/Card'
 import DonationRequestCard from './DonationRequestCard'
 import UpComingEvents from './UpComingEvents'
+import { getUserAsyncData } from '../../shared/core/DataStore'
 
 const DonarHome = ({ navigation }) => {
+
+
+    const [requestList, setRequestList] = useState()
+    const loadMyRequests = () => {
+        getUserAsyncData().then((res => {
+
+
+            var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            };
+
+            fetch("https://us-central1-blood-donar-project.cloudfunctions.net/app/getMyRequestsForBlood/" + res.id + "/" + res.organizationID, requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    setRequestList(result.data.result)
+                })
+                .catch(error => console.log('error', error));
+        }))
+    }
+
+
+    useEffect(() => {
+        loadMyRequests()
+    }, [])
     return (
         <SafeAreaView style={{ flex: 1 }}>
 
@@ -45,7 +71,7 @@ const DonarHome = ({ navigation }) => {
                         <SvgDonateBlood />
                     </View>
                 </View>
-                <View style={styles.sectopview}>
+                {/* <View style={styles.sectopview}>
                     <View style={styles.midview}>
                         <Text style={styles.txt}> Your Current Location </Text>
                         <View style={styles.locinput}>
@@ -54,7 +80,7 @@ const DonarHome = ({ navigation }) => {
                                 placeholder={"Islambad"}
 
                             />
-                            <SvgMap color={"#fc7474"}/>
+                            <SvgMap color={"#fc7474"} />
                         </View>
                     </View>
                     <View style={styles.bloodview}>
@@ -64,28 +90,41 @@ const DonarHome = ({ navigation }) => {
                             <SvgDown style={{ marginLeft: 2 }} />
                         </View>
                     </View>
-                </View>
+                </View> */}
                 <View style={styles.top}>
                     <Text style={styles.doc}>
-                    Donation Requests
+                        Donation Requests
                     </Text>
                     <Text style={styles.seedoc}>
                         See All
                     </Text>
+
                 </View>
-                <DonationRequestCard
-                    navigation={navigation}
+
+
+
+                <FlatList
+                    style={{ width: '100%' }}
+                    data={requestList}
+                    renderItem={({ item }) => <DonationRequestCard requestDetails={item} navigation={navigation} />}
+                    keyExtractor={item => Math.random().toString()}
                 />
+
+
+
+
+
+
                 {/* <DonationRequestCard/> */}
-                <View style={styles.top}>
+                {/* <View style={styles.top}>
                     <Text style={styles.doc}>
-                    Upcoming Events
+                        Upcoming Events
                     </Text>
                     <Text style={styles.seedoc}>
                         See All
                     </Text>
                 </View>
-                <UpComingEvents/>
+                <UpComingEvents /> */}
             </LinearGradient>
         </SafeAreaView>
     )
@@ -244,9 +283,9 @@ const styles = StyleSheet.create({
     doc: {
         color: '#101010',
         fontSize: 15
-      },
-      seedoc: {
+    },
+    seedoc: {
         color: '#4440BF',
         fontSize: 13
-      },
+    },
 })

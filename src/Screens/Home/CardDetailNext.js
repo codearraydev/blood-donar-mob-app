@@ -72,7 +72,7 @@ const CardDetailNext = ({ navigation, route }) => {
                 redirect: 'follow'
             };
 
-            Alert.alert(raw)
+          //  Alert.alert(raw)
 
 
 

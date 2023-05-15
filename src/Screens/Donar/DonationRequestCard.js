@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View,TouchableOpacity,Image } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { SvgCardLine, SvgDistance, SvgMap, SvgMapText, SvgTime } from '../../components/svg'
 
 const DonationRequestCard = (props) => {
-  return (
-    <TouchableOpacity style={styles.midview} onPress={()=> props.navigation.navigate('PatientInfo') }>
-        <View style={styles.card}>
+    return (
+        <TouchableOpacity style={styles.midview} onPress={() => props.navigation.navigate('PatientInfo', { requestId: props.requestDetails.requestID })}>
+            <View style={styles.card}>
                 <View style={styles.card1}>
                     <View style={styles.subcard}>
                         <View>
@@ -16,60 +16,60 @@ const DonationRequestCard = (props) => {
                                 }}
                             />
                         </View>
-                        <View style={{marginLeft:10}}>
+                        <View style={{ marginLeft: 10 }}>
                             <Text style={styles.name}>
-                            Lauren Griffith
+                                {props.requestDetails.organizationName}
                             </Text>
                             <View style={styles.detailview}>
-                            <Text style={[styles.sname,{color:'#5949E6'}]}>
-                            5
-                            </Text>
-                            <Text style={[styles.sname,{color:'#C1C1C1'}]}>
-                            /9
-                            </Text>
-                            <Text style={[styles.sname,{marginLeft:10,color:'#FF6B6B'}]}>
-                            AB+
-                            </Text>
-                            <Text style={styles.sname}>
-                            {' '}Required
-                            </Text>
+                                <Text style={[styles.sname, { color: '#5949E6' }]}>
+                                    5
+                                </Text>
+                                <Text style={[styles.sname, { color: '#C1C1C1' }]}>
+                                    /{props.requestDetails.bloodBags}
+                                </Text>
+                                <Text style={[styles.sname, { marginLeft: 10, color: '#FF6B6B' }]}>
+                                    {props.requestDetails.pat_bloodType}
+                                </Text>
+                                <Text style={styles.sname}>
+                                    {' '}Required
+                                </Text>
                             </View>
-                            
+
                         </View>
                     </View>
                 </View>
                 <View style={styles.uview}>
-                    <Text style={styles.utxt}>Urgent</Text>
+                    <Text style={styles.utxt}>{props.requestDetails.caseStatus}</Text>
                 </View>
             </View>
             <SvgCardLine />
             <View style={styles.sbview1}>
                 <View style={{ flexDirection: 'row', marginTop: 2 }}>
                     <View style={styles.icon}>
-                    <SvgMap color={"#fc7474"} />
+                        <SvgMap color={"#fc7474"} />
                     </View>
-                   
+
                     <Text style={styles.loc}>
-                    National cancer Hospital Sector F DHA Phase II, Islamabad.
+                        {props.requestDetails.address}
                     </Text>
                 </View>
                 <View style={{ flexDirection: 'row', marginTop: 4 }}>
-                <View style={styles.icon}>
-                    <SvgDistance />
+                    <View style={styles.icon}>
+                        <SvgDistance />
                     </View>
                     <Text style={styles.loc}>
-                    21-May -2023
+                        {props.requestDetails.required_Date}
                     </Text>
-                    <View style={[styles.icon,{marginLeft:20}]}>
-                    <SvgTime color={"#cecece"}/>
+                    <View style={[styles.icon, { marginLeft: 20 }]}>
+                        <SvgTime color={"#cecece"} />
                     </View>
                     <Text style={styles.loc}>
-                        10 minutes ago
+                        {props.requestDetails.reciverName}
                     </Text>
                 </View>
             </View>
-    </TouchableOpacity>
-  )
+        </TouchableOpacity>
+    )
 }
 
 export default DonationRequestCard
@@ -115,24 +115,24 @@ const styles = StyleSheet.create({
     },
     subcard: {
         width: '80%', alignItems: 'center',
-        
+
 
         flexDirection: 'row'
     },
-    uview:{
-        width:65,
-        height:22,
-        alignItems:'center',
-        justifyContent:'center',
-        backgroundColor:'#FFDEE2',
-        borderRadius:5
+    uview: {
+        width: 65,
+        height: 22,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#FFDEE2',
+        borderRadius: 5
     },
-    utxt:{
-        color:'#FF5656',
-        fontSize:10
+    utxt: {
+        color: '#FF5656',
+        fontSize: 10
     },
-    detailview:{
-        flexDirection:'row'
+    detailview: {
+        flexDirection: 'row'
     },
     sbview1: {
         width: '95%',
@@ -141,12 +141,13 @@ const styles = StyleSheet.create({
     loc: {
         color: '#504F4F',
         fontSize: 10,
-        marginLeft:8
+        marginLeft: 8
     },
-    icon:{
-        width:15,
-        alignItems:'center',
-        justifyContent:'center'
-       
+    icon: {
+        width: 15,
+        alignItems: 'center',
+        justifyContent: 'center'
+
     }
 })
+//YezMD2Jd7Ot0285g2ahs   zK92NQHRa4xiChSi3nMr
