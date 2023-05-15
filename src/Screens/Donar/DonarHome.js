@@ -109,12 +109,6 @@ const DonarHome = ({ navigation }) => {
                     renderItem={({ item }) => <DonationRequestCard requestDetails={item} navigation={navigation} />}
                     keyExtractor={item => Math.random().toString()}
                 />
-
-
-
-
-
-
                 {/* <DonationRequestCard/> */}
                 {/* <View style={styles.top}>
                     <Text style={styles.doc}>

@@ -1,10 +1,17 @@
 import { StyleSheet, Text, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SvgSplash, SvgSplashIcon } from '../../components/svg';
 
-const Splash = () => {
+
+const SplashScreen = ({navigation}) => {
+    useEffect(()=>{
+        setTimeout(() => {
+            navigation.navigate("Login")
+          }, 2000);
+    },[])
+    
   return (
     <LinearGradient colors={['#F7FAFF', '#FCFAFE', '#FCFAFE']} style={styles.Mview}>
        <View style={styles.splashview}>
@@ -18,7 +25,7 @@ const Splash = () => {
   )
 }
 
-export default Splash
+export default SplashScreen
 
 const styles = StyleSheet.create({
     Mview:

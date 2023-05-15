@@ -67,7 +67,6 @@ const CaseInfo = props => {
 
               </View>
               <View style={styles.applicantview}>
-                {/* <View style={styles.lview}> */}
                 <View style={styles.named}>
                   <Text style={styles.nametxt}>Applicant Name:</Text>
                   <View style={styles.txtview}>
@@ -82,8 +81,6 @@ const CaseInfo = props => {
                   </View>
                 </View>
 
-                {/* </View> */}
-                {/* <View style={styles.stview}> */}
                 <View style={styles.named}>
                   <Text style={styles.nametxt}>Case Status:</Text>
                   <View style={styles.txtview}>
@@ -361,7 +358,7 @@ const styles = StyleSheet.create({
 
   },
   statusview: {
-    width: 60,
+    width: 110,
     height: 18,
     alignItems: 'center',
     backgroundColor: '#E4FFDE',
@@ -375,7 +372,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   decisionview: {
-    width: 60,
+    width: 110,
     height: 18,
     alignItems: 'center',
     backgroundColor: '#FFDEE9',
@@ -390,6 +387,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   txtview: {
-    width: '30%'
+    width: '40%',
+    alignItems: 'center'
   }
 })

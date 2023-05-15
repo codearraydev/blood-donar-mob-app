@@ -172,12 +172,12 @@ const styles = StyleSheet.create({
         fontSize: 10
     },
     statusview: {
-        width: 60,
+        width: 90,
         height: 18,
         alignItems: 'center',
         backgroundColor: '#E4FFDE',
         borderRadius: 5,
-        marginLeft: 22
+        marginLeft: 15
 
     },
     stxt: {
@@ -185,17 +185,17 @@ const styles = StyleSheet.create({
         color: '#039416'
     },
     decisionview: {
-        width: 60,
+        width: 90,
         height: 18,
         alignItems: 'center',
         backgroundColor: '#FFDEE9',
         borderRadius: 5,
-        marginLeft: 22
+        marginLeft: 15
 
     },
     dtxt: {
         fontSize: 11,
-        color: '#CE7E99'
+        color: '#CE7E99',
     }
 })
 export default CaseItem;

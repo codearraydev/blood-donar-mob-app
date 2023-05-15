@@ -66,17 +66,8 @@ const Login = ({ navigation }) => {
                 }).catch(error => {
                     console.log("error", error)
                 })
-
-
-
-                //
-                // 
-
             })
             .catch(error => console.log('error', error));
-
-
-
     }
     return (
         <SafeAreaView style={{ flex: 1, }}>
@@ -92,11 +83,8 @@ const Login = ({ navigation }) => {
                         <Text style={styles.welcometxt}>
                             Welcome back!
                         </Text>
-
                     </View>
                     <View style={styles.secondview}>
-
-
                         <View style={styles.midview}>
                             <Text style={styles.txt}>
                                 Email
@@ -117,6 +105,7 @@ const Login = ({ navigation }) => {
                                 placeholder="Enter your password"
                                 placeholderTextColor={'grey'}
                                 value={password}
+                                secureTextEntry={true}
                                 onChangeText={(value) => setPassword(value)}
                             />
                         </View>
@@ -158,7 +147,7 @@ const Login = ({ navigation }) => {
 
 
                             <Text style={styles.bytxt}>
-                                Don’t have an account?
+                                Don’t have an account ?
                             </Text>
                         </TouchableOpacity>
                     </View>
@@ -214,7 +203,6 @@ const styles = StyleSheet.create({
         color: '#2E2E2E',
         marginTop: 10,
         alignSelf: 'center',
-        //fontFamily:'Plus Jakarta Sans'
     },
     midview: {
         height: 70,
@@ -231,7 +219,7 @@ const styles = StyleSheet.create({
     tinput: {
         borderWidth: 1,
         borderColor: '#B1B1B1',
-        height: 38,
+        height: 40,
         borderRadius: 10,
         paddingLeft: 15,
         backgroundColor: '#FFFFFF'
