@@ -60,58 +60,58 @@ const CaseInfo = props => {
                     <Image source={require("./../../assets/profile.png")} style={styles.imgview} />
                   </View>
                 </View>
-               
-                  <Text style={styles.headingtxt}>{patientData?.pat_name}</Text>
-                 
-                  
-               
+
+                <Text style={styles.headingtxt}>{patientData?.pat_name}</Text>
+
+
+
               </View>
-                <View style={styles.applicantview}>
+              <View style={styles.applicantview}>
                 {/* <View style={styles.lview}> */}
-                    <View style={styles.named}>
-                      <Text style={styles.nametxt}>Applicant Name:</Text>
-                      <View style={styles.txtview}>
-                      <Text style={styles.getnametxt}>{patientData?.reciverName}</Text>
-                      </View>
-                     
-                    </View>
-                    <View style={styles.named}>
-                      <Text style={styles.nametxt}>Applicant Contact:</Text>
-                      <View style={styles.txtview}>
-                      <Text style={styles.getphonetxt}>{patientData?.pat_phoneno}</Text>
-                      </View>
-                    </View>
+                <View style={styles.named}>
+                  <Text style={styles.nametxt}>Applicant Name:</Text>
+                  <View style={styles.txtview}>
+                    <Text style={styles.getnametxt}>{patientData?.reciverName}</Text>
+                  </View>
 
-                  {/* </View> */}
-                  {/* <View style={styles.stview}> */}
-                    <View style={styles.named}>
-                      <Text style={styles.nametxt}>Case Status:</Text>
-                      <View style={styles.txtview}>
-                      <View style={styles.statusview}>
-
-                        <Text style={styles.stxt}>{patientData && capitalizeFirstLetter(patientData?.caseStatus)}</Text>
-                      </View>
-                      </View>
-
-
-                    </View>
-                    <View style={styles.named}>
-                      <Text style={styles.nametxt}>Case Decision:</Text>
-                      <View style={styles.txtview}>
-                      <View style={styles.decisionview}>
-                        <Text style={styles.dtxt}>{patientData && capitalizeFirstLetter(patientData?.casedecision)}</Text>
-                      </View>
-                      </View>
-
-                    {/* </View> */}
+                </View>
+                <View style={styles.named}>
+                  <Text style={styles.nametxt}>Applicant Contact:</Text>
+                  <View style={styles.txtview}>
+                    <Text style={styles.getphonetxt}>{patientData?.pat_phoneno}</Text>
                   </View>
                 </View>
+
+                {/* </View> */}
+                {/* <View style={styles.stview}> */}
+                <View style={styles.named}>
+                  <Text style={styles.nametxt}>Case Status:</Text>
+                  <View style={styles.txtview}>
+                    <View style={styles.statusview}>
+
+                      <Text style={styles.stxt}>{patientData && capitalizeFirstLetter(patientData?.caseStatus)}</Text>
+                    </View>
+                  </View>
+
+
+                </View>
+                <View style={styles.named}>
+                  <Text style={styles.nametxt}>Case Decision:</Text>
+                  <View style={styles.txtview}>
+                    <View style={styles.decisionview}>
+                      <Text style={styles.dtxt}>{patientData && capitalizeFirstLetter(patientData?.casedecision)}</Text>
+                    </View>
+                  </View>
+
+                  {/* </View> */}
+                </View>
+              </View>
               <View style={styles.secondview}>
                 <View style={styles.midview}>
                   <Text style={styles.txt}>
-                    Diagnosis
+                    Patient Details
                   </Text>
-                  <Text style={styles.txt1}>Autoimmune hemolytic anemia, Tuberclosis</Text>
+                  <Text style={styles.txt1}>{patientData?.pat_detail}</Text>
                 </View>
                 <View style={styles.midview}>
                   <Text style={styles.txt}>
@@ -137,7 +137,7 @@ const CaseInfo = props => {
                 </View>
               </View>
 
-             
+
             </>
           }
         </LinearGradient>
@@ -257,17 +257,19 @@ const styles = StyleSheet.create({
   },
   midview: {
     height: 45,
-    marginTop: 12,
+    marginTop: 22,
     width: '95%',
     justifyContent: 'space-between'
   },
   txt: {
     fontSize: 14,
     color: '#878787',
+    marginTop: 10
   },
   txt1: {
     color: '#333333',
-    fontSize: 14
+    fontSize: 14,
+    marginTop: 5
   },
   txt2: {
     color: '#504F4F',
@@ -285,7 +287,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '92%',
-    marginTop:10
+    marginTop: 10
   },
   group: {
     fontSize: 14,
@@ -320,7 +322,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
     justifyContent: 'center',
     //alignItems: 'center'
-    paddingHorizontal:10
+    paddingHorizontal: 10
 
   },
   stview: {
@@ -334,29 +336,29 @@ const styles = StyleSheet.create({
   named: {
     marginTop: 5,
     //borderWidth:1,
-    justifyContent:'space-between',
+    justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
   },
- 
+
   nametxt: {
     color: '#262525',
     fontSize: 12,
-    fontWeight:'bold',
-    textAlign:'left'
+    fontWeight: 'bold',
+    textAlign: 'left'
   },
- 
+
   getnametxt: {
     color: '#262525',
     fontSize: 11,
     fontWeight: 'bold',
-   
+
   },
   getphonetxt: {
     color: '#262525',
     fontSize: 11,
     fontWeight: 'bold',
-   
+
   },
   statusview: {
     width: 60,
@@ -365,7 +367,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#E4FFDE',
     borderRadius: 5,
     marginTop: 5,
-   
+
   },
   stxt: {
     fontSize: 12,
@@ -378,7 +380,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFDEE9',
     borderRadius: 5,
-   
+
 
 
   },
@@ -387,7 +389,7 @@ const styles = StyleSheet.create({
     color: '#CE7E99',
     fontWeight: 'bold'
   },
-  txtview:{
-    width:'30%'
+  txtview: {
+    width: '30%'
   }
 })

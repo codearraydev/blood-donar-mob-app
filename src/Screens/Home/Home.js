@@ -150,7 +150,7 @@ const Home = ({ navigation }) => {
             isLoading ? <ActivityIndicator style={{ marginTop: 20 }} size={'large'} color={'blue'} />
               :
               <FlatList
-              style={{ flex: 1, width: '100%' }}
+                style={{ flex: 1, width: '100%' }}
                 data={searchList}
                 renderItem={({ item }) => <Card userId={userId} orgDetails={item} navigation={navigation} />}
                 keyExtractor={item => Math.random().toString()}
