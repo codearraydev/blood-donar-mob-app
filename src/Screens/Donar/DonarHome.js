@@ -14,12 +14,11 @@ const DonarHome = ({ navigation }) => {
     const loadMyRequests = () => {
         getUserAsyncData().then((res => {
 
-
+          
             var requestOptions = {
                 method: 'GET',
                 redirect: 'follow'
             };
-
             fetch("https://us-central1-blood-donar-project.cloudfunctions.net/app/getMyRequestsForBlood/" + res.id + "/" + res.organizationID, requestOptions)
                 .then(response => response.json())
                 .then(result => {

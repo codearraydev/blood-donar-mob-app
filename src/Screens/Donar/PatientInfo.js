@@ -66,7 +66,7 @@ const PatientInfo = (props) => {
   }
   return (
     <SafeAreaView style={{ flex: 1, }}>
-      <KeyboardAvoidingView style={{ flex: 1, }}>
+      
         <LinearGradient colors={['#F7FAFF', '#FCFAFE', '#FCFAFE']} style={styles.Mview}>
           <View style={styles.top}>
             <TouchableOpacity style={{ height: 30, width: 30, justifyContent: 'center' }} onPress={() => props.navigation.goBack()}>
@@ -124,14 +124,18 @@ const PatientInfo = (props) => {
             </View>
           </View>
 
-          <TouchableOpacity style={styles.continuebtn} onPress={() => props.navigation.navigate('PatientInfoNext')}>
+          <TouchableOpacity style={styles.continuebtn} onPress={() => props.navigation.navigate('DonarDetail',{
+           
+             requestId: props.route.params.requestId,
+          
+          })}>
             <Text style={styles.continuetxt}>Approve Request</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.continuebtn} onPress={() => rejectRequest()}>
             <Text style={styles.continuetxt}>Reject Request</Text>
           </TouchableOpacity>
         </LinearGradient>
-      </KeyboardAvoidingView>
+    
     </SafeAreaView>
   )
 }

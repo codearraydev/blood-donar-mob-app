@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         padding: 5,
         elevation: 5,
+        alignSelf:'center'
     },
     card: {
         flexDirection: 'row',

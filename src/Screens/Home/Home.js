@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView, TextInput, Image, FlatList, ScrollView, ActivityIndicator, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
-import { SvgCardLine, SvgDistance, SvgHelp, SvgHomeLogo, SvgMap, SvgMapText, SvgNotification, SvgTxtSearch } from '../../components/svg'
+import { SvgCardLine, SvgDistance, SvgHelp, SvgHomeLogo, SvgMap, SvgMapText, SvgNoData, SvgNotification, SvgTxtSearch } from '../../components/svg'
 import Card from '../../components/Card'
 import { useSafeAreaFrame } from 'react-native-safe-area-context'
 import { getUserAsyncData } from '../../shared/core/DataStore'
@@ -13,6 +13,7 @@ const Home = ({ navigation }) => {
   const [searchList, setSearchList] = useState()
   const [isLoading, setIsloading] = useState(false)
   const [searchValue, setSearchValue] = useState('')
+  
 
   useEffect(() => {
     getUserAsyncData().then((res => {
@@ -89,7 +90,14 @@ const Home = ({ navigation }) => {
             <SvgHomeLogo />
           </View>
         </View>
+
         <View style={styles.sectopview}>
+          {/* <TextInput
+            style={{ color: 'black', fontSize: 12, padding: 10, borderWidth: 1, borderColor: 'grey', width: '90%', height: 38, borderRadius: 5, marginTop: 10 }}
+            placeholder={"Zaraj Housing Society, Islamabad"}
+            placeholderTextColor='grey'
+          /> */}
+
           <TextInput
             style={{ color: 'black', fontSize: 12, padding: 10, borderWidth: 1, borderColor: 'grey', width: '90%', height: 38, borderRadius: 5, marginTop: 10 }}
             placeholder={"Search by blood Group, blood bank"}
@@ -142,13 +150,21 @@ const Home = ({ navigation }) => {
 
             isLoading ? <ActivityIndicator style={{ marginTop: 20 }} size={'large'} color={'blue'} />
               :
-              <FlatList
-                style={{ flex: 1, width: '100%' }}
-                data={searchList}
-                renderItem={({ item }) => <Card userId={userId} orgDetails={item} navigation={navigation} />}
-                keyExtractor={item => Math.random().toString()}
-              />
-            // <Card />
+              <>
+                {(searchList) ?
+                  <FlatList
+                    data={searchList}
+                    renderItem={({ item }) => <Card userId={userId} orgDetails={item} navigation={navigation} />}
+                    keyExtractor={item => Math.random().toString()}
+                  /> :
+                  <View style={styles.norecord}>
+                  <SvgNoData/>
+                  <Text style={styles.recordtxt}>
+                    No Record Found
+                  </Text>
+                  </View>
+                }
+              </>
           }
 
 
@@ -323,10 +339,10 @@ const styles = StyleSheet.create({
     marginTop: -130,
     marginLeft: 245
   },
-
-
-
-
+  recordtxt: {
+    fontSize: 20,
+    color: "#363636",
+  },
   midview: {
     height: 120,
     width: '90%',
@@ -336,5 +352,9 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  norecord:{
+    alignItems:'center',
+    padding:90
   }
 })

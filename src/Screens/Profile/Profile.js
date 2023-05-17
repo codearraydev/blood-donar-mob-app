@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
   tview: {
     height: 38,
     width: '97%',
-
+    
     borderBottomWidth: 1,
     borderColor: '#E2E6EA',
     flexDirection: 'row',

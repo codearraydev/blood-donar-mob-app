@@ -2,18 +2,18 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import { SvgDistance, SvgMap, SvgTime } from '../../components/svg'
 
-const AppointmentCard = () => {
+const AppointmentCard = (props) => {
     return (
         <View style={styles.midview}>
             <Image
                 style={styles.imgview}
                 source={{
-                    uri: 'https://picsum.photos/200/300?random=1',
+                    uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZBSAAq9hWqhrtEGdCdi5H7pq2smZ5FJDjuw&usqp=CAU',
                 }}
             />
             <View style={styles.detail}>
                 <Text style={styles.detailtxt}>
-                    National Cancer Hospital
+                    {props.appointmentDetails.organizationName}
                 </Text>
                 <View style={styles.uview}>
                     <Text style={styles.utxt}>91</Text>
@@ -40,7 +40,7 @@ const AppointmentCard = () => {
                 </View>
 
                 <Text style={styles.location}>
-                    National cancer Hospital Sector F DHA Phase II, Islamabad.
+                    {props.appointmentDetails.organizationAddress}
                 </Text>
             </View>
         </View>
@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         padding: 8,
         elevation: 5,
+        alignSelf:'center'
     },
     imgview: {
         width: '100%',

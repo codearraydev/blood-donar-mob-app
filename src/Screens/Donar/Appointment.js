@@ -1,10 +1,41 @@
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, KeyboardAvoidingView, TextInput, Image } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, KeyboardAvoidingView, TextInput, Image, Alert,FlatList} from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 import React, { useState, useEffect } from 'react'
-import { SvgBackArrow, SvgBloodGroup, SvgCardLine, SvgMap } from '../../components/svg';
+import { SvgBackArrow, SvgBloodGroup, SvgCardLine, SvgMap, SvgNoData } from '../../components/svg';
 import AppointmentCard from './AppointmentCard';
+import { getUserAsyncData } from '../../shared/core/DataStore'
+const Appointment = ({navigation}) => {
+    const [appointmentList, setAppoimentList] = useState()
+    const loadMyAppointment = () => {
+        getUserAsyncData().then((res => {
 
-const Appointment = () => {
+          console.log("RESSSSSSS",res.id)
+          var raw = "";
+          var requestOptions = {
+            method: 'GET',
+            body: raw,
+            redirect: 'follow'
+          };
+          
+          fetch("https://us-central1-blood-donar-project.cloudfunctions.net/app/getMyAppointemnets/"+res.id, requestOptions)
+                .then(result => result.json())
+                .then(result => {
+                    console.log("RRRRRRRRRRR ",result)
+                    if(result.status == 1) {
+                        
+                        setAppoimentList(result.data)
+                    } 
+                    else if(result.status == 0){
+                       // Alert.alert("No appointment")
+                    }
+                  
+                })
+                .catch(error => console.log('error', error));
+        }))
+    }
+    useEffect(() => {
+        loadMyAppointment()
+    }, [])
     return (
         <SafeAreaView style={{ flex: 1, }}>
             <KeyboardAvoidingView style={{ flex: 1, }}>
@@ -15,8 +46,22 @@ const Appointment = () => {
                         </TouchableOpacity>
                         <Text style={styles.headtxt}>Appointment</Text>
                     </View>
-                    <AppointmentCard />
-                    <AppointmentCard />
+                   {(appointmentList)?
+                   <FlatList
+                    style={{ width: '100%' }}
+                    data={appointmentList}
+                    renderItem={({ item }) => <AppointmentCard appointmentDetails={item} navigation={navigation} />}
+                    keyExtractor={item => Math.random().toString()}
+                />:<View style={styles.norecord}>
+                <SvgNoData/>
+                <Text style={styles.recordtxt}>
+                  No Record Found
+                </Text>
+                </View>
+
+                }
+                    {/* <AppointmentCard />
+                    <AppointmentCard /> */}
                 </LinearGradient>
             </KeyboardAvoidingView>
         </SafeAreaView>
@@ -44,4 +89,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginLeft: 80
     },
+    norecord:{
+        alignItems:'center',
+        padding:90
+      },
+      recordtxt: {
+        fontSize: 20,
+        color: "#363636",
+      },
 })
