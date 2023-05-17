@@ -52,7 +52,6 @@ const DonarDetail =  (props) => {
                 .then(response => response.json())
                 .then(result => {
                     setLoading(false)
-                    Alert.alert(result.message)
 
                     Alert.alert(
                         "Response",
@@ -83,7 +82,7 @@ const DonarDetail =  (props) => {
         <SafeAreaView style={{ flex: 1, }}>
             <LinearGradient colors={['#F7FAFF', '#FCFAFE', '#FCFAFE']} style={styles.Mview}>
                 <View style={styles.top}>
-                    <TouchableOpacity style={{ height: 30, width: 30, justifyContent: 'center' }} onPress={() => navigation.goBack()}>
+                    <TouchableOpacity style={{ height: 30, width: 30, justifyContent: 'center' }} onPress={() => props.navigation.goBack()}>
                         <SvgBackArrow />
                     </TouchableOpacity>
 
@@ -167,11 +166,12 @@ const DonarDetail =  (props) => {
                             <DateTimePicker
                                 modal
                                 open={appdatePicker}
+                                is24hourSource={'local'}
                                 date={new Date()}
-                                mode="date"
+                                mode="datetime"
                                 onConfirm={(nextValue) => {
                                     setAppointmentDate(nextValue)
-                                    setAppointmentDate(moment(nextValue).format("DD/MM/YYYY"))
+                                    setAppointmentDate(moment(nextValue).format("DD/MM/YYYY hh:mm A"))
                                     setAppdatePicker(false)
                                 }}
                                 onCancel={() => {

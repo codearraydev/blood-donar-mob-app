@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
-import { SvgPicker, SvgTime } from '../../components/svg'
+import moment from 'moment'
+import { SvgMap, SvgPicker, SvgTime } from '../../components/svg'
 
-const UpComingEvents = () => {
+const UpComingEvents = (props) => {
     return (
         <TouchableOpacity style={styles.midview}>
             <View>
@@ -15,16 +16,25 @@ const UpComingEvents = () => {
             </View>
            <View style={styles.detail}>
             <Text style={styles.detailtxt}>
-            National Cancer Hospital
+            {props.eventsDetails.eventName}
             </Text>
             <View style={styles.uview}>
                     <Text style={styles.utxt}>join now</Text>
                 </View>
            </View>
            <View style={styles.lview}>
+                    <View style={styles.icon}>
+                        <SvgMap color={"#fc7474"} />
+                    </View>
+
+                    <Text style={styles.loc}>
+                    {props.eventsDetails.eventAddress}
+                    </Text>
+                </View>
+           <View style={styles.lview}>
                     <View style={styles.ldetail}>
                         <Text style={styles.num}>
-                            100+
+                        {props.eventsDetails.totalVisitors} +
                         </Text>
                         <Text style={styles.txt}>
                            {' '}Joined
@@ -33,16 +43,21 @@ const UpComingEvents = () => {
                     <View style={[styles.ldetail,{justifyContent:'space-between'}]}>
                         <View style={styles.dview}>
                             <SvgPicker/>
-                            <Text style={styles.timedate}>21-May -2023</Text>
+                            <Text style={styles.timedate}>
+                            {moment(props.eventsDetails.createdAt).format("DD/MM/YYYY")}
+                            </Text>
                         </View>
                         <View style={styles.dview}>
                             <SvgTime color={'#4024b8'}/>
-                            <Text style={styles.timedate}>10:00 am</Text>
+                            <Text style={styles.timedate}>
+                            {moment(props.eventsDetails.createdAt).format("hh:mm")}
+                            </Text>
                         </View>
                         
                     </View>
            </View>
-
+           
+            
         </TouchableOpacity>
     )
 }
@@ -51,7 +66,7 @@ export default UpComingEvents
 
 const styles = StyleSheet.create({
     midview: {
-        height: 140,
+        height: 150,
         marginTop: 9,
         marginBottom: 2,
         width: '95%',
@@ -69,6 +84,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         //padding: 5,
         elevation: 5,
+        alignSelf:'center'
     },
     imgview: {
         width: '100%',
@@ -108,8 +124,8 @@ const styles = StyleSheet.create({
     ldetail:{
         flexDirection:'row',
         alignItems:'center',
-        
-        width: '50%',
+      
+        width: '55%',
     },
     num:{
         color:'#FF6B6B',
@@ -129,5 +145,15 @@ const styles = StyleSheet.create({
         color:'#828282',
         fontSize:10,
         marginLeft:10
+    },
+    loc: {
+        color: '#504F4F',
+        fontSize: 10,
+        marginLeft: 8
+    },
+    icon: {
+        alignItems: 'center',
+        justifyContent: 'center'
+
     }
 })

@@ -33,6 +33,7 @@ const CaseInfo = props => {
         .then(result => {
           setIsloading(false)
           setpatientData(result.data)
+          console.log(result.data,"Helllo")
           // Alert.alert(result)
         })
         .catch(error => console.log('error', error));
@@ -129,7 +130,7 @@ const CaseInfo = props => {
                   <SvgBloodGroup group={patientData?.pat_bloodType} />
                   <View>
                     <Text style={styles.group}>Left</Text>
-                    <Text style={styles.group1}>5</Text>
+                    <Text style={styles.group1}>{patientData?.leftBloodBags}</Text>
                   </View>
                 </View>
               </View>

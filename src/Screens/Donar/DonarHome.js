@@ -23,6 +23,7 @@ const DonarHome = ({ navigation }) => {
                 .then(response => response.json())
                 .then(result => {
                     setRequestList(result.data.result)
+                   
                 })
                 .catch(error => console.log('error', error));
         }))

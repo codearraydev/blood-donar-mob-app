@@ -4,28 +4,32 @@ import React, { useState, useEffect } from 'react'
 import { SvgBackArrow, SvgBloodGroup, SvgCardLine, SvgMap, SvgNoData } from '../../components/svg';
 import AppointmentCard from './AppointmentCard';
 import { getUserAsyncData } from '../../shared/core/DataStore'
-const Appointment = ({navigation}) => {
-    const [appointmentList, setAppoimentList] = useState()
-    const loadMyAppointment = () => {
+import UpComingEvents from './UpComingEvents';
+
+
+const Events = ({navigation}) => {
+
+    const [eventList, setEventList] = useState()
+    const loadMyEvents = () => {
         getUserAsyncData().then((res => {
 
-          console.log("RESSSSSSS",res.id)
-          var raw = "";
+          console.log("events",res)
+
           var requestOptions = {
             method: 'GET',
-            body: raw,
             redirect: 'follow'
           };
-          
-          fetch("https://us-central1-blood-donar-project.cloudfunctions.net/app/getMyAppointemnets/"+res.id, requestOptions)
+
+          fetch("https://us-central1-blood-donar-project.cloudfunctions.net/app/getMyEvents/"+res.organizationID, requestOptions)
                 .then(result => result.json())
                 .then(result => {
-                    console.log("RRRRRRRRRRR ",result)
+                    console.log("events ",result)
                     if(result.status == 1) {
-                        
-                        setAppoimentList(result.data)
+                        console.log("Successss")
+                        setEventList(result.data.result)
                     } 
                     else if(result.status == 0){
+                      console.log("status 0")
                        // Alert.alert("No appointment")
                     }
                   
@@ -34,7 +38,7 @@ const Appointment = ({navigation}) => {
         }))
     }
     useEffect(() => {
-        loadMyAppointment()
+        loadMyEvents()
     }, [])
     return (
         <SafeAreaView style={{ flex: 1, }}>
@@ -44,31 +48,27 @@ const Appointment = ({navigation}) => {
                         <TouchableOpacity style={{ height: 30, width: 30, justifyContent: 'center' }} onPress={() => navigation.goBack()}>
                             <SvgBackArrow />
                         </TouchableOpacity>
-                        <Text style={styles.headtxt}>Appointment</Text>
+                        <Text style={styles.headtxt}>Upcoming Events</Text>
                     </View>
-                   {(appointmentList)?
-                   <FlatList
-                    style={{ width: '100%' }}
-                    data={appointmentList}
-                    renderItem={({ item }) => <AppointmentCard appointmentDetails={item} navigation={navigation} />}
+                 
+                    <FlatList
+                     style={{ width: '100%' }}
+                    data={eventList}
+                    renderItem={({ item }) => 
+                      <UpComingEvents eventsDetails={item} navigation={navigation}/>
+                  }
                     keyExtractor={item => Math.random().toString()}
-                />:<View style={styles.norecord}>
-                <SvgNoData/>
-                <Text style={styles.recordtxt}>
-                  No Appointment
-                </Text>
-                </View>
-
-                }
-                    {/* <AppointmentCard />
-                    <AppointmentCard /> */}
+                  />
+                
+             
+                   
                 </LinearGradient>
             </KeyboardAvoidingView>
         </SafeAreaView>
     )
 }
 
-export default Appointment
+export default Events
 
 const styles = StyleSheet.create({
     Mview:
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F3F3F3',
         alignItems: 'center',
-        //justifyContent: 'space-between'
+       
     },
     top: {
         width: '90%',
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     headtxt: {
         color: '#363636',
         fontSize: 18,
-        marginLeft: 80
+        marginLeft: 60
     },
     norecord:{
         alignItems:'center',

@@ -2,8 +2,9 @@ import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, KeyboardAvoidin
 import LinearGradient from 'react-native-linear-gradient';
 import React, { useState, useEffect } from 'react'
 import { SvgBackArrow, SvgBloodGroup, SvgCardLine, SvgEdit, SvgMap } from '../../components/svg';
-import { getUserAsyncData } from '../../shared/core/DataStore';
+import { getUserAsyncData, setUserAsyncData } from '../../shared/core/DataStore';
 import moment from 'moment';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Profile = ({ navigation }) => {
@@ -14,6 +15,12 @@ const Profile = ({ navigation }) => {
       setProfile(res)
     }))
   }, [])
+  const logout = () => {
+    AsyncStorage.clear();
+    
+      navigation.navigate('Login')
+  }
+
   return (
     <SafeAreaView style={{ flex: 1, }}>
       <KeyboardAvoidingView style={{ flex: 1, }}>
@@ -23,6 +30,9 @@ const Profile = ({ navigation }) => {
               <SvgBackArrow />
             </TouchableOpacity>
             <Text style={styles.headtxt}>Profile</Text>
+            <TouchableOpacity onPress={() => logout()}>
+              <Text style={styles.logouttxt}>Logout</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.topview}>
             <View style={styles.subview}>
@@ -155,7 +165,8 @@ const styles = StyleSheet.create({
     width: '90%',
     marginVertical: 20,
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   inforview: {
     width: '90%',
@@ -171,7 +182,12 @@ const styles = StyleSheet.create({
   headtxt: {
     color: '#363636',
     fontSize: 18,
-    marginLeft: 120
+
+  },
+  logouttxt: {
+    color: '#FF6B6B',
+    fontSize: 18,
+
   },
   topview: {
     height: 200,
@@ -247,7 +263,7 @@ const styles = StyleSheet.create({
   tview: {
     height: 38,
     width: '97%',
-    
+
     borderBottomWidth: 1,
     borderColor: '#E2E6EA',
     flexDirection: 'row',

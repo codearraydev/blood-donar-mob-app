@@ -11,6 +11,7 @@ import SearchResult from '../SearchResult/SearchResult';
 import DonarHome from '../Donar/DonarHome';
 import Appointment from '../Donar/Appointment';
 import Profile from '../Profile/Profile';
+import Events from '../Donar/Events';
 
 const Tab = createBottomTabNavigator()
 const DonarBottomTab= ({ navigation }) => {
@@ -45,7 +46,7 @@ const DonarBottomTab= ({ navigation }) => {
         )
       }}
       />
-       <Tab.Screen name="Appointment" component={Appointment} options={{
+       <Tab.Screen name="Events" component={Events} options={{
         tabBarIcon: ({ focused }) => (
           <View style={{ alignItems: 'center', 'justifyContent': 'center' }}>
             {focused ? <SvgCalender color="#ff478c" /> : <SvgCalender color="#BFBFBF" />}
@@ -79,7 +80,7 @@ const DonarBottomTab= ({ navigation }) => {
         )
       }}
       />
-       <Tab.Screen name="SearchResult" component={SearchResult} options={{
+       <Tab.Screen name="Appointment" component={Appointment} options={{
         tabBarIcon: ({ focused }) => (
           <View style={{ alignItems: 'center', 'justifyContent': 'center' }}>
             {focused ? <SvgBloodDonation color="#ff478c" /> : <SvgBloodDonation color="#BFBFBF" />}

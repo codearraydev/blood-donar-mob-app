@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, KeyboardAvoidingView, Alert, ActivityIndicator } from 'react-native'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { emailValidator, passwordloginValidator } from '../../shared/validators/validator'
@@ -11,8 +11,8 @@ const Login = ({ navigation }) => {
 
 
 
-    const [email, setEmail] = useState('irfan@gmail.com')
-    const [password, setPassword] = useState('12345678')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const [isloading, setIslaoding] = useState(false)
 
 
@@ -59,8 +59,12 @@ const Login = ({ navigation }) => {
                     // Alert.alert("Data saved success...!!!")
 
                     if (result.data.role == 'reciver') {
+                        setEmail('')
+                        setPassword('')
                         navigation.navigate('BottomTabs')
                     } else {
+                        setEmail('')
+                        setPassword('')
                         navigation.navigate('DonarBottomTabs')
                     }
                 }).catch(error => {
@@ -69,6 +73,8 @@ const Login = ({ navigation }) => {
             })
             .catch(error => console.log('error', error));
     }
+    
+
     return (
         <SafeAreaView style={{ flex: 1, }}>
             <KeyboardAvoidingView style={{ flex: 1, }}>

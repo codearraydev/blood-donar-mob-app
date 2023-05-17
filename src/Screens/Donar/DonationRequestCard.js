@@ -22,7 +22,7 @@ const DonationRequestCard = (props) => {
                             </Text>
                             <View style={styles.detailview}>
                                 <Text style={[styles.sname, { color: '#5949E6' }]}>
-                                    5
+                                {props.requestDetails.leftBloodBags}
                                 </Text>
                                 <Text style={[styles.sname, { color: '#C1C1C1' }]}>
                                     /{props.requestDetails.bloodBags}

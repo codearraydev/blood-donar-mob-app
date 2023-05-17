@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, KeyboardAvoidingView, TextInput, Image, Alert } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView,ActivityIndicator, KeyboardAvoidingView, TextInput, Image, Alert } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 import React, { useState, useEffect } from 'react'
 import { SvgBackArrow, SvgBloodGroup, SvgCardLine, SvgMap } from '../../components/svg';
@@ -7,7 +7,7 @@ import { getUserAsyncData } from '../../shared/core/DataStore';
 //PatientInfo
 const PatientInfo = (props) => {
 
-
+  const [loading, setLoading] = useState(false);
   const [caseDetails, setCaseDetails] = useState()
   useEffect(() => {
     // Alert.alert(props.route.params.requestId)
@@ -40,12 +40,12 @@ const PatientInfo = (props) => {
     getUserAsyncData().then((res => {
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-
+      setLoading(true)
       var raw = JSON.stringify({
         "donorID": res.id,
         "requestID": props.route.params.requestId,
         "organizationID": res.organizationID,
-        "requestResponse": "rejected",
+        "DonorDecision": "rejected",
       });
 
       var requestOptions = {
@@ -58,9 +58,26 @@ const PatientInfo = (props) => {
       fetch("https://us-central1-blood-donar-project.cloudfunctions.net/app/requestResponse", requestOptions)
         .then(response => response.json())
         .then(result => {
-          Alert.alert(result.message)
+          setLoading(false)
+                    Alert.alert(
+                        "Response",
+                        result.message,
+                        [
+                          {
+                            text: "OK",
+                            onPress: () => {
+                              props.navigation.navigate('DonarBottomTabs');
+                            },
+                          },
+                        ],
+                        { cancelable: false }
+                      );
+
         })
-        .catch(error => console.log('error', error));
+        .catch(error => {
+          setLoading(false)
+          console.log('error', error)
+        });
     }))
 
   }
@@ -119,7 +136,7 @@ const PatientInfo = (props) => {
               <SvgBloodGroup group={caseDetails?.pat_bloodType} />
               <View>
                 <Text style={styles.group}>Left</Text>
-                <Text style={styles.group1}>5</Text>
+                <Text style={styles.group1}>{caseDetails?.leftBloodBags}</Text>
               </View>
             </View>
           </View>
@@ -132,7 +149,8 @@ const PatientInfo = (props) => {
             <Text style={styles.continuetxt}>Approve Request</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.continuebtn} onPress={() => rejectRequest()}>
-            <Text style={styles.continuetxt}>Reject Request</Text>
+           
+            <Text style={styles.continuetxt}> {loading ? <ActivityIndicator color={'white'} /> : 'Reject Request'}</Text>
           </TouchableOpacity>
         </LinearGradient>
     

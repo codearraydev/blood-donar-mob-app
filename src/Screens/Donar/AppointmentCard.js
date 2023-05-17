@@ -1,8 +1,20 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { SvgDistance, SvgMap, SvgTime } from '../../components/svg'
+import moment from 'moment';
 
 const AppointmentCard = (props) => {
+        const [remainingDays,setReainingDays] = useState('')
+    // / Assuming the given date is in YYYY-MM-DD format
+    useEffect(() => {
+        const eventdate = moment(props.appointmentDetails.required_Date).format("YYYY-MM-DD");
+        console.log("Event Date ", eventdate)
+        const currentDate = new Date();
+        const today = moment(currentDate).format("YYYY-MM-DD") // Get the current date
+
+      setReainingDays(moment(eventdate).diff(today, 'days'));
+    }, [])
+
     return (
         <View style={styles.midview}>
             <Image
@@ -16,7 +28,7 @@ const AppointmentCard = (props) => {
                     {props.appointmentDetails.organizationName}
                 </Text>
                 <View style={styles.uview}>
-                    <Text style={styles.utxt}>91</Text>
+                    <Text style={styles.utxt}>10</Text>
                     <Text style={styles.daystxt}>{' '}Days left</Text>
                 </View>
             </View>
@@ -68,7 +80,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         padding: 8,
         elevation: 5,
-        alignSelf:'center'
+        alignSelf: 'center'
     },
     imgview: {
         width: '100%',
