@@ -134,7 +134,7 @@ const DonarDetail =  (props) => {
                         <Text style={styles.txt}>
                             Ride Required
                         </Text>
-                        <DropDownPicker style={[styles.tinput, { minHeight: 20, zIndex: rideopen ? 1 : 1000 }]}
+                        <DropDownPicker style={[styles.tinput, { minHeight: 20, zIndex: 99999999 }]}
                             containerProps={{
                                 //height:30
                             }}
@@ -152,7 +152,7 @@ const DonarDetail =  (props) => {
                             setItems={setRideItems}
                         />
                     </View>
-                    <View style={styles.midview1}>
+                    <View style={[styles.midview1 , {marginTop: 70}]}>
                         <Text style={styles.txt}>Appointment Date </Text>
                         <TouchableOpacity onPress={() => setAppdatePicker(true)} style={styles.dateofbirth}>
                             <TextInput style={{ color: 'black' }}
