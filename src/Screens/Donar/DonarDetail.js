@@ -60,7 +60,7 @@ if(result.status==1){
           {
             text: "OK",
             onPress: () => {
-              props.navigation.navigate('DonarBottomTabs');
+              props.navigation.navigate('PatientInfoNext');
             },
           },
         ],
