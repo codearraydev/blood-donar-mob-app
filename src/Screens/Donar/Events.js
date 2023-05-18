@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, KeyboardAvoidingView, TextInput, Image, Alert,FlatList} from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, KeyboardAvoidingView,ActivityIndicator,TextInput, Image, Alert,FlatList} from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 import React, { useState, useEffect } from 'react'
 import { SvgBackArrow, SvgBloodGroup, SvgCardLine, SvgMap, SvgNoData } from '../../components/svg';
@@ -8,25 +8,27 @@ import UpComingEvents from './UpComingEvents';
 
 
 const Events = ({navigation}) => {
-
+    const [loadEvent, setLoadEvent] = useState(false)
     const [eventList, setEventList] = useState()
     const loadMyEvents = () => {
+        setLoadEvent(true)
         getUserAsyncData().then((res => {
 
-          console.log("events",res)
+          console.log("events reddddddddddddddd",res)
 
           var requestOptions = {
             method: 'GET',
             redirect: 'follow'
           };
 
-          fetch("https://us-central1-blood-donar-project.cloudfunctions.net/app/getMyEvents/"+res.organizationID, requestOptions)
+          fetch("https://us-central1-blood-donar-project.cloudfunctions.net/app/getMyEvents/"+res.organizationID + "/"+ res.id, requestOptions)
                 .then(result => result.json())
                 .then(result => {
-                    console.log("events ",result)
+                    setLoadEvent(false)
+                    console.log("events ",JSON.stringify(result))
                     if(result.status == 1) {
                         console.log("Successss")
-                        setEventList(result.data.result)
+                        setEventList(result.data.events)
                     } 
                     else if(result.status == 0){
                       console.log("status 0")
@@ -50,7 +52,7 @@ const Events = ({navigation}) => {
                         </TouchableOpacity>
                         <Text style={styles.headtxt}>Upcoming Events</Text>
                     </View>
-                 
+                    {loadEvent && <ActivityIndicator color={'blue'} size={'large'}/>}
                     <FlatList
                      style={{ width: '100%' }}
                     data={eventList}

@@ -157,7 +157,7 @@ else{
                             setItems={setRideItems}
                         />
                     </View>
-                    <View style={[styles.midview1 , {marginTop: 70}]}>
+                    <View style={styles.midview1}>
                         <Text style={styles.txt}>Appointment Date </Text>
                         <TouchableOpacity onPress={() => setAppdatePicker(true)} style={styles.dateofbirth}>
                             <TextInput style={{ color: 'black' }}

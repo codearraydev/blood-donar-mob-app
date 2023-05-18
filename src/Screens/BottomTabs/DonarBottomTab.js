@@ -54,7 +54,7 @@ const DonarBottomTab= ({ navigation }) => {
         )
       }}
       />
-       <Tab.Screen name="Searchlt" component={SearchResult} options={{
+       {/* <Tab.Screen name="Searchlt" component={SearchResult} options={{
         tabBarShowLabel: false,
         tabBarLabel: '',
         tabBarIcon: ({ focused }) => (
@@ -73,13 +73,13 @@ const DonarBottomTab= ({ navigation }) => {
               <SvgdonarTab />
             </View>
             {/* <Text style={{marginBottom: 20,marginTop:-6, fontSize: 12 , fontWeight: 'bold'}}>Scan Vitals</Text> */}
-          </TouchableOpacity>
-          // <View style={{ alignItems: 'center', justifyContent: 'center', }}>
+          {/* </TouchableOpacity>  */}
+          {/* // <View style={{ alignItems: 'center', justifyContent: 'center', }}>
           //   {focused ? <SvgDashboard color="#4682B4" /> : <SvgDashboard color="#b1b1b1" />}
-          // </View>
-        )
-      }}
-      />
+          // </View> 
+         )
+      }}  */}
+      {/* /> */}
        <Tab.Screen name="Appointment" component={Appointment} options={{
         tabBarIcon: ({ focused }) => (
           <View style={{ alignItems: 'center', 'justifyContent': 'center' }}>

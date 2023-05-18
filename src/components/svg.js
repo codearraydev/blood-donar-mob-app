@@ -9192,3 +9192,31 @@ export function SvgNoData(props) {
     </Svg>
   )
 }
+export function SvgTick(props) {
+  return (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={20}
+      height={18}
+      viewBox="0 0 22 22"
+      {...props}
+    >
+      <G transform="translate(-1704.806 -326.806)">
+        <G data-name="Check mark - Free shapes and symbols icons-2 (1)">
+          <Path
+            data-name="7-Check"
+            d="M33.969 46.075a1.948 1.948 0 00-1.506 3.177l4.948 6.061a1.768 1.768 0 001.478.656 1.9 1.9 0 001.488-.882l10.278-16.551.005-.008a.533.533 0 00-.134-.626.546.546 0 00-.793.055l-.011.013-10.365 11.711a.449.449 0 01-.639.035l-3.44-3.13a1.939 1.939 0 00-1.309-.511z"
+            transform="translate(1706.463 328.698) translate(-32.027 -37.756)"
+            fill="#4ca400"
+          />
+        </G>
+        <Path
+          data-name="Rectangle 4225"
+          transform="translate(1704.806 326.806)"
+          fill="none"
+          d="M0 0H22V22H0z"
+        />
+      </G>
+    </Svg>
+  )
+}

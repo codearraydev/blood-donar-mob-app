@@ -104,7 +104,7 @@ const CardDetailNext = ({ navigation, route }) => {
                     </View>
 
                     <View style={styles.firstview}>
-                        <View style={[styles.midview,
+                        {/* <View style={[styles.midview,
                         { zIndex: 999 }]}>
                             <Text style={styles.txt}> City </Text>
                             <DropDownPicker style={[styles.tinput, { minHeight: 20 }]}
@@ -125,9 +125,9 @@ const CardDetailNext = ({ navigation, route }) => {
                                 setItems={setCityItems}
                             />
 
-                        </View>
+                        </View> */}
 
-                        <View style={[styles.midview1,
+                        {/* <View style={[styles.midview1,
                         { zIndex: districtopen ? 1000 : 1 }]}>
                             <Text style={styles.txt}> District </Text>
                             <DropDownPicker style={[styles.tinput, { minHeight: 20 }]}
@@ -148,7 +148,7 @@ const CardDetailNext = ({ navigation, route }) => {
                                 setItems={setDistrictItems}
                             />
 
-                        </View>
+                        </View> */}
                         <View style={[styles.midview1, { height: 150 }]}>
                             <Text style={styles.txt}>
                                 Address

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { SvgDistance, SvgMap, SvgTime } from '../../components/svg'
 import moment from 'moment';
@@ -7,12 +7,13 @@ const AppointmentCard = (props) => {
         const [remainingDays,setReainingDays] = useState('')
     // / Assuming the given date is in YYYY-MM-DD format
     useEffect(() => {
-        const eventdate = moment(props.appointmentDetails.required_Date).format("YYYY-MM-DD");
-        console.log("Event Date ", eventdate)
+        const eventdate = props.appointmentDetails.required_Date;
+       
         const currentDate = new Date();
-        const today = moment(currentDate).format("YYYY-MM-DD") // Get the current date
-
+        const today = moment(currentDate).format("DD/MM/YYYY") // Get the current date
+       
       setReainingDays(moment(eventdate).diff(today, 'days'));
+       console.log("Event Date ", today)
     }, [])
 
     return (
@@ -37,7 +38,7 @@ const AppointmentCard = (props) => {
                     <SvgDistance />
                 </View>
                 <Text style={styles.loc}>
-                    21-May -2023
+                {props.appointmentDetails.required_Date}
                 </Text>
                 <View style={[styles.icon, { marginLeft: 20 }]}>
                     <SvgTime color={"#cecece"} />

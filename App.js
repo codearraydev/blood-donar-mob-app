@@ -13,6 +13,7 @@ import PatientInfo from './src/Screens/Donar/PatientInfo';
 import PatientInfoNext from './src/Screens/Donar/PatientInfoNext';
 import CaseInfo from './src/Screens/Search/CaseInfo';
 import DonarDetail from './src/Screens/Donar/DonarDetail';
+import AppointmentDetail from './src/Screens/Donar/AppointmentDetail';
 
 
 
@@ -33,6 +34,7 @@ const App =()=>{
             <Stack.Screen name="PatientInfoNext" component={PatientInfoNext} />
             <Stack.Screen name="DonarDetail" component={DonarDetail} />
             <Stack.Screen name="CardDetailNext" component={CardDetailNext} />
+            <Stack.Screen name="AppointmentDetail" component={AppointmentDetail} />
          </Stack.Navigator>
      </NavigationContainer>
   );

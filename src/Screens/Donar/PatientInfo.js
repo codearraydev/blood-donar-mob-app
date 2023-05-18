@@ -22,12 +22,12 @@ const PatientInfo = (props) => {
         method: 'GET',
         redirect: 'follow'
       };
-
-      fetch("https://us-central1-blood-donar-project.cloudfunctions.net/app/getSingleRequestsForBlood/" + props.route.params.requestId + "/" + res.organizationID, requestOptions)
+    
+      fetch("https://us-central1-blood-donar-project.cloudfunctions.net/app/getSingleRequestsForBlood/" + props.route.params.requestId + "/" + res.organizationID + "/" + res.id, requestOptions)
         .then(response => response.json())
         .then(result => {
           setCaseDetails(result.data)
-          console.log("PAt ",result.data)
+         
         })
         .catch(error => console.log('error', error));
     }))
@@ -140,6 +140,8 @@ const PatientInfo = (props) => {
             </View>
           </View>
 
+          {(caseDetails?.DonorDecision == 'pending')?
+          <>
           <TouchableOpacity style={styles.continuebtn} onPress={() => props.navigation.navigate('DonarDetail',{
            
              requestId: props.route.params.requestId,
@@ -151,6 +153,21 @@ const PatientInfo = (props) => {
            
             <Text style={styles.continuetxt}> {loading ? <ActivityIndicator color={'white'} /> : 'Reject Request'}</Text>
           </TouchableOpacity>
+          </>:
+          (caseDetails?.DonorDecision == 'accepted')?
+            <View style={styles.continuebtn}>
+              <Text style={styles.continuetxt}>
+                Request Accepted
+              </Text>
+            </View>
+          :
+          (caseDetails?.DonorDecision == 'rejected')?
+          <View style={styles.continuebtn}>
+          <Text style={styles.continuetxt}>
+            Request Rejected
+          </Text>
+          </View>
+          :null}
         </LinearGradient>
     
     </SafeAreaView>
