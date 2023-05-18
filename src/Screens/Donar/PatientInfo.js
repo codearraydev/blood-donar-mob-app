@@ -27,14 +27,13 @@ const PatientInfo = (props) => {
         .then(response => response.json())
         .then(result => {
           setCaseDetails(result.data)
+          console.log("PAt ",result.data)
         })
         .catch(error => console.log('error', error));
     }))
 
 
   }
-
-
   const rejectRequest = () => {
 
     getUserAsyncData().then((res => {

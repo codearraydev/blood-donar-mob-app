@@ -52,21 +52,26 @@ const DonarDetail =  (props) => {
                 .then(response => response.json())
                 .then(result => {
                     setLoading(false)
+if(result.status==1){
+    Alert.alert(
+        "Response",
+        result.message,
+        [
+          {
+            text: "OK",
+            onPress: () => {
+              props.navigation.navigate('DonarBottomTabs');
+            },
+          },
+        ],
+        { cancelable: false }
+      );
 
-                    Alert.alert(
-                        "Response",
-                        result.message,
-                        [
-                          {
-                            text: "OK",
-                            onPress: () => {
-                              props.navigation.navigate('DonarBottomTabs');
-                            },
-                          },
-                        ],
-                        { cancelable: false }
-                      );
-
+}
+else{
+    Alert.alert(result.message)
+}
+                    
 
 
                     console.log("Donar ",result)
@@ -130,11 +135,11 @@ const DonarDetail =  (props) => {
 
                         />
                     </View>
-                    <View style={styles.midview1}>
+                    <View style={[styles.midview1, { zIndex: rideopen ? 1 : 1000 }]}>
                         <Text style={styles.txt}>
                             Ride Required
                         </Text>
-                        <DropDownPicker style={[styles.tinput, { minHeight: 20, zIndex: rideopen ? 1 : 1000 }]}
+                        <DropDownPicker style={[styles.tinput, { minHeight: 20,}]}
                             containerProps={{
                                 //height:30
                             }}
