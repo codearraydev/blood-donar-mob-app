@@ -1,47 +1,55 @@
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, KeyboardAvoidingView,ActivityIndicator,TextInput, Image, Alert,FlatList} from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, KeyboardAvoidingView, ActivityIndicator, TextInput, Image, Alert, FlatList } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 import React, { useState, useEffect } from 'react'
 import { SvgBackArrow, SvgBloodGroup, SvgCardLine, SvgMap, SvgNoData } from '../../components/svg';
 import AppointmentCard from './AppointmentCard';
 import { getUserAsyncData } from '../../shared/core/DataStore'
 import UpComingEvents from './UpComingEvents';
+import { useFocusEffect } from '@react-navigation/native';
 
 
-const Events = ({navigation}) => {
+const Events = ({ navigation }) => {
     const [loadEvent, setLoadEvent] = useState(false)
     const [eventList, setEventList] = useState()
+
+
     const loadMyEvents = () => {
         setLoadEvent(true)
         getUserAsyncData().then((res => {
 
-          console.log("events reddddddddddddddd",res)
+            console.log("events reddddddddddddddd", res)
 
-          var requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-          };
+            var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            };
 
-          fetch("https://us-central1-blood-donar-project.cloudfunctions.net/app/getMyEvents/"+res.organizationID + "/"+ res.id, requestOptions)
+            fetch("https://us-central1-blood-donar-project.cloudfunctions.net/app/getMyEvents/" + res.organizationID + "/" + res.id, requestOptions)
                 .then(result => result.json())
                 .then(result => {
                     setLoadEvent(false)
-                    console.log("events ",JSON.stringify(result))
-                    if(result.status == 1) {
+                    console.log("events ", JSON.stringify(result))
+                    if (result.status == 1) {
                         console.log("Successss")
                         setEventList(result.data.events)
-                    } 
-                    else if(result.status == 0){
-                      console.log("status 0")
-                       // Alert.alert("No appointment")
                     }
-                  
+                    else if (result.status == 0) {
+                        console.log("status 0")
+                        // Alert.alert("No appointment")
+                    }
+
                 })
                 .catch(error => console.log('error', error));
         }))
     }
-    useEffect(() => {
-        loadMyEvents()
-    }, [])
+   
+
+    useFocusEffect(
+        React.useCallback(() => {
+            loadMyEvents()
+        }, [])
+    );
+
     return (
         <SafeAreaView style={{ flex: 1, }}>
             <KeyboardAvoidingView style={{ flex: 1, }}>
@@ -52,18 +60,18 @@ const Events = ({navigation}) => {
                         </TouchableOpacity>
                         <Text style={styles.headtxt}>Upcoming Events</Text>
                     </View>
-                    {loadEvent && <ActivityIndicator color={'blue'} size={'large'}/>}
+                    {loadEvent && <ActivityIndicator color={'blue'} size={'large'} />}
                     <FlatList
-                     style={{ width: '100%' }}
-                    data={eventList}
-                    renderItem={({ item }) => 
-                      <UpComingEvents eventsDetails={item} navigation={navigation}/>
-                  }
-                    keyExtractor={item => Math.random().toString()}
-                  />
-                
-             
-                   
+                        style={{ width: '100%' }}
+                        data={eventList}
+                        renderItem={({ item }) =>
+                            <UpComingEvents eventsDetails={item} navigation={navigation} />
+                        }
+                        keyExtractor={item => Math.random().toString()}
+                    />
+
+
+
                 </LinearGradient>
             </KeyboardAvoidingView>
         </SafeAreaView>
@@ -78,7 +86,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F3F3F3',
         alignItems: 'center',
-       
+
     },
     top: {
         width: '90%',
@@ -91,12 +99,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginLeft: 60
     },
-    norecord:{
-        alignItems:'center',
-        padding:90
-      },
-      recordtxt: {
+    norecord: {
+        alignItems: 'center',
+        padding: 90
+    },
+    recordtxt: {
         fontSize: 20,
         color: "#363636",
-      },
+    },
 })

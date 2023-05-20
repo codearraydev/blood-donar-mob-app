@@ -10,14 +10,15 @@ import Search from '../Search/Search';
 import SearchResult from '../SearchResult/SearchResult';
 import DonarHome from '../Donar/DonarHome';
 import Appointment from '../Donar/Appointment';
+import Reports from '../Donar/Reports';
 import Profile from '../Profile/Profile';
 import Events from '../Donar/Events';
 
 const Tab = createBottomTabNavigator()
-const DonarBottomTab= ({ navigation }) => {
+const DonarBottomTab = ({ navigation }) => {
   return (
-    
-    
+
+
     <Tab.Navigator
       tabBarOptions={{
         showLabel: false,
@@ -46,7 +47,7 @@ const DonarBottomTab= ({ navigation }) => {
         )
       }}
       />
-       <Tab.Screen name="Events" component={Events} options={{
+      <Tab.Screen name="Events" component={Events} options={{
         tabBarIcon: ({ focused }) => (
           <View style={{ alignItems: 'center', 'justifyContent': 'center' }}>
             {focused ? <SvgCalender color="#ff478c" /> : <SvgCalender color="#BFBFBF" />}
@@ -54,7 +55,7 @@ const DonarBottomTab= ({ navigation }) => {
         )
       }}
       />
-       {/* <Tab.Screen name="Searchlt" component={SearchResult} options={{
+      {/* <Tab.Screen name="Searchlt" component={SearchResult} options={{
         tabBarShowLabel: false,
         tabBarLabel: '',
         tabBarIcon: ({ focused }) => (
@@ -73,14 +74,22 @@ const DonarBottomTab= ({ navigation }) => {
               <SvgdonarTab />
             </View>
             {/* <Text style={{marginBottom: 20,marginTop:-6, fontSize: 12 , fontWeight: 'bold'}}>Scan Vitals</Text> */}
-          {/* </TouchableOpacity>  */}
-          {/* // <View style={{ alignItems: 'center', justifyContent: 'center', }}>
+      {/* </TouchableOpacity>  */}
+      {/* // <View style={{ alignItems: 'center', justifyContent: 'center', }}>
           //   {focused ? <SvgDashboard color="#4682B4" /> : <SvgDashboard color="#b1b1b1" />}
           // </View> 
          )
       }}  */}
       {/* /> */}
-       <Tab.Screen name="Appointment" component={Appointment} options={{
+      <Tab.Screen name="Appointment" component={Appointment} options={{
+        tabBarIcon: ({ focused }) => (
+          <View style={{ alignItems: 'center', 'justifyContent': 'center' }}>
+            {focused ? <SvgBloodDonation color="#ff478c" /> : <SvgBloodDonation color="#BFBFBF" />}
+          </View>
+        )
+      }}
+      />
+      <Tab.Screen name="Reports" component={Reports} options={{
         tabBarIcon: ({ focused }) => (
           <View style={{ alignItems: 'center', 'justifyContent': 'center' }}>
             {focused ? <SvgBloodDonation color="#ff478c" /> : <SvgBloodDonation color="#BFBFBF" />}
@@ -96,7 +105,7 @@ const DonarBottomTab= ({ navigation }) => {
         )
       }}
       />
-    
+
     </Tab.Navigator>
   )
 }
