@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { SvgBackArrow, SvgBloodGroup, SvgCardLine, SvgMap, SvgNoData } from '../../components/svg';
 import AppointmentCard from './AppointmentCard';
 import { getUserAsyncData } from '../../shared/core/DataStore'
+import { useFocusEffect } from '@react-navigation/native';
 const Appointment = ({navigation}) => {
     const [appointmentList, setAppoimentList] = useState()
     const loadMyAppointment = () => {
@@ -33,9 +34,14 @@ const Appointment = ({navigation}) => {
                 .catch(error => console.log('error', error));
         }))
     }
-    useEffect(() => {
-        loadMyAppointment()
-    }, [])
+
+    useFocusEffect(
+        React.useCallback(() => {
+            loadMyAppointment()
+        }, [])
+    );
+
+
     return (
         <SafeAreaView style={{ flex: 1, }}>
             <KeyboardAvoidingView style={{ flex: 1, }}>

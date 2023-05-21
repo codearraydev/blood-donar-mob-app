@@ -40,28 +40,13 @@ const Profile = ({ navigation }) => {
                 <Image source={require("./../../assets/profile.png")} style={styles.imgview} />
               </View>
             </View>
-            <View style={styles.subview1}>
-              <View style={{ flexDirection: 'row', width: '95%', justifyContent: 'space-between', alignItems: 'center' }}>
-
-
-                <View style={{ width: '95%', alignItems: 'center' }}>
-                  <Text style={styles.headingtxt}>{profile.name}</Text>
-                </View>
-                <View style={{ width: '5%', alignItems: 'center' }}>
-                  <SvgEdit />
-                </View>
-              </View>
-              <Text style={styles.subtxt}>Student ,17 years old, with history of congestive heart failure,</Text>
-              <Text style={styles.subtxt}>coronary artery disease risk factors of hypertension and post</Text>
-              <Text style={styles.subtxt}>post menopausal state.</Text>
-            </View>
           </View>
 
           <View style={styles.inforview}>
             <Text style={styles.info}>
               Personal Information
             </Text>
-            <SvgEdit />
+           
           </View>
           <View style={styles.firstview}>
             <View style={styles.tview}>
@@ -190,7 +175,7 @@ const styles = StyleSheet.create({
 
   },
   topview: {
-    height: 200,
+    height: 110,
     width: '95%',
     borderRadius: 10,
     backgroundColor: '#FFFFFF',

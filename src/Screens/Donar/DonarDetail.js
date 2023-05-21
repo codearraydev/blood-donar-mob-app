@@ -19,8 +19,8 @@ const DonarDetail =  (props) => {
     const [rideopen, setRideOpen] = useState(false);
 
     const [rideitems, setRideItems] = useState([
-        { label: 'Yes', value: 'Yes' },
-        { label: 'No', value: 'No' },
+        { label: 'Yes', value: 'yes' },
+        { label: 'No', value: 'no' },
 
     ]);
 

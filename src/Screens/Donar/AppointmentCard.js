@@ -4,16 +4,16 @@ import { SvgDistance, SvgMap, SvgTime } from '../../components/svg'
 import moment from 'moment';
 
 const AppointmentCard = (props) => {
-        const [remainingDays,setReainingDays] = useState('')
+    const [remainingDays, setReainingDays] = useState('')
     // / Assuming the given date is in YYYY-MM-DD format
     useEffect(() => {
         const eventdate = props.appointmentDetails.required_Date;
-       
+
         const currentDate = new Date();
         const today = moment(currentDate).format("DD/MM/YYYY") // Get the current date
-       
-      setReainingDays(moment(eventdate).diff(today, 'days'));
-       console.log("Event Date ", today)
+
+        setReainingDays(moment(eventdate).diff(today, 'days'));
+        console.log("Event Date ", today)
     }, [])
 
     return (
@@ -37,15 +37,24 @@ const AppointmentCard = (props) => {
                 <View style={styles.icon}>
                     <SvgDistance />
                 </View>
-                <Text style={styles.loc}>
-                {props.appointmentDetails.required_Date}
-                </Text>
+                <View>
+                    <Text style={{ fontSize: 10 }}> Requried Date:  </Text>
+                    <Text style={styles.loc}>
+                        {props.appointmentDetails.required_Date}
+                    </Text>
+                </View>
+
                 <View style={[styles.icon, { marginLeft: 20 }]}>
                     <SvgTime color={"#cecece"} />
                 </View>
-                <Text style={styles.loc}>
-                    10 minutes ago
-                </Text>
+
+                <View>
+                    <Text style={{ fontSize: 10 }}> Appointment Date</Text>
+                    <Text style={styles.loc}>
+                        {props.appointmentDetails.appointmentDate}
+                    </Text>
+                </View>
+
             </View>
             <View style={{ flexDirection: 'row', width: '100%', marginTop: 3 }}>
                 <View style={styles.icon}>
@@ -115,7 +124,8 @@ const styles = StyleSheet.create({
     loc: {
         color: '#504F4F',
         fontSize: 10,
-        marginLeft: 8
+        marginLeft: 5,
+        marginTop: 5
     },
     location: {
         color: '#504F4F',

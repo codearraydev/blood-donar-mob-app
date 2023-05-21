@@ -109,40 +109,8 @@ const Home = ({ navigation }) => {
 
           />
         </View>
-        <View style={styles.top}>
-          <Text style={styles.doc}>
-            Available Donors
-          </Text>
-          <Text style={styles.seedoc}>
-            See All
-          </Text>
-        </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-around', width: '95%' }}>
-          <View style={styles.sbview1}>
-            <Text style={styles.txt1}>A+</Text>
-          </View>
-          <View style={styles.sbview}>
-            <Text style={styles.txt}>A-</Text>
-          </View>
-          <View style={styles.sbview}>
-            <Text style={styles.txt}>B+</Text>
-          </View>
-          <View style={styles.sbview}>
-            <Text style={styles.txt}>B-</Text>
-          </View>
-          <View style={styles.sbview}>
-            <Text style={styles.txt}>O+</Text>
-          </View>
-          <View style={styles.sbview}>
-            <Text style={styles.txt}>O-</Text>
-          </View>
-          <View style={styles.sbview}>
-            <Text style={styles.txt}>AB+</Text>
-          </View>
-          <View style={styles.sbview}>
-            <Text style={styles.txt}>AB-</Text>
-          </View>
-        </View>
+       
+     
 
         <View style={{ alignItems: 'center' }}>
 
