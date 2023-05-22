@@ -4,17 +4,17 @@ import { SvgDistance, SvgMap, SvgTime } from '../../components/svg'
 import moment from 'moment';
 
 const AppointmentCard = (props) => {
-    const [remainingDays, setReainingDays] = useState('')
-    // / Assuming the given date is in YYYY-MM-DD format
-    useEffect(() => {
-        const eventdate = props.appointmentDetails.required_Date;
+    // const [remainingDays, setReainingDays] = useState('')
+    // // / Assuming the given date is in YYYY-MM-DD format
+    // useEffect(() => {
+    //     const eventdate = props.appointmentDetails.required_Date;
 
-        const currentDate = new Date();
-        const today = moment(currentDate).format("DD/MM/YYYY") // Get the current date
+    //     const currentDate = new Date();
+    //     const today = moment(currentDate).format("DD/MM/YYYY") // Get the current date
 
-        setReainingDays(moment(eventdate).diff(today, 'days'));
-        console.log("Event Date ", today)
-    }, [])
+    //     setReainingDays(moment(eventdate).diff(today, 'days'));
+    //     console.log("Event Date ", today)
+    // }, [])
 
     return (
         <View style={styles.midview}>
@@ -49,12 +49,11 @@ const AppointmentCard = (props) => {
                 </View>
 
                 <View>
-                    <Text style={{ fontSize: 10 }}> Appointment Date</Text>
+                    <Text style={{ fontSize: 10 }}>Appointment Date</Text>
                     <Text style={styles.loc}>
                         {props.appointmentDetails.appointmentDate}
                     </Text>
                 </View>
-
             </View>
             <View style={{ flexDirection: 'row', width: '100%', marginTop: 3 }}>
                 <View style={styles.icon}>

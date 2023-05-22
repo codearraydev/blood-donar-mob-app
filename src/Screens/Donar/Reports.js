@@ -44,7 +44,7 @@ const Appointment = ({ navigation }) => {
     }
     return (
         <SafeAreaView style={{ flex: 1, }}>
-            <KeyboardAvoidingView style={{ flex: 1, }}>
+           
                 <LinearGradient colors={['#F7FAFF', '#FCFAFE', '#FCFAFE']} style={styles.Mview}>
                     <View style={styles.top}>
                         <TouchableOpacity style={{ height: 30, width: 30, justifyContent: 'center' }} onPress={() => navigation.goBack()}>
@@ -87,7 +87,6 @@ const Appointment = ({ navigation }) => {
                     {/* <AppointmentCard /> */}
 
                 </LinearGradient>
-            </KeyboardAvoidingView>
         </SafeAreaView>
     )
 }

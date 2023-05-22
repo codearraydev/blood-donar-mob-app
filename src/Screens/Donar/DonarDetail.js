@@ -174,6 +174,7 @@ else{
                                 is24hourSource={'local'}
                                 date={new Date()}
                                 mode="datetime"
+                                minimumDate={new Date()}
                                 onConfirm={(nextValue) => {
                                     setAppointmentDate(nextValue)
                                     setAppointmentDate(moment(nextValue).format("DD/MM/YYYY hh:mm A"))

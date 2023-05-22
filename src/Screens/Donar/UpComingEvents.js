@@ -77,7 +77,7 @@ const UpComingEvents = (props) => {
             <View style={styles.lview}>
                 <View style={styles.ldetail}>
                     <Text style={styles.num}>
-                        {props.eventsDetails.totalVisitors} +
+                        {props.eventsDetails.TotalVisitors} +
                     </Text>
                     <Text style={styles.txt}>
                         {' '}Joined

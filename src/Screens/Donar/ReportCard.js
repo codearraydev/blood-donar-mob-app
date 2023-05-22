@@ -8,52 +8,40 @@ const ReportCard = (props) => {
 
 
     return (
-        <View style={{
-            padding: 10, width: '96%', backgroundColor: '#f3f3f3', marginTop: 20, shadowColor: "#000",
-            shadowOffset: {
-                width: 0,
-                height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
+        <View style={styles.midview}>
+            <Text style={styles.heading}>{moment(props.resultDetails.BloodDonatedDate).format("DD/MM/YYYY")}</Text>
 
-            elevation: 5,
-        }}>
-            <Text>Report Date: 12/5/2006</Text>
-            <View style={{ marginTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text style={{ width: 90, fontWeight: 'bold' }}>Title</Text>
-                <Text style={{ width: 60, fontWeight: 'bold' }}>Value</Text>
-                <Text style={{ width: 80, fontWeight: 'bold' }}>Range</Text>
+            <View style={styles.secview}>
+                <View style={styles.childview}>
+                <Text style={styles.heading}>Title</Text>
+                <Text style={styles.txt}>Hemoglogbin</Text>
+                <Text style={styles.txt}>Platelet</Text>
+                <Text style={styles.txt}>WBC Count</Text>
+                <Text style={styles.txt}>RBC Count</Text>
+                </View>
+                <View style={styles.childview1}>
+                <Text style={styles.heading}>Value</Text>
+                <Text style={styles.txt}>{props.resultDetails.Hemoglobin}</Text>
+                <Text style={styles.txt}>{props.resultDetails.plateletCount}</Text>
+                <Text style={styles.txt}>{props.resultDetails.whiteBloodCells}</Text>
+                <Text style={styles.txt}>{props.resultDetails.redBloodCells}</Text>
+                </View>
+                <View style={styles.childview}>
+                <Text style={styles.heading}>Range</Text>
+                <Text style={styles.txt}>12-18</Text>
+                <Text style={styles.txt}>100K-450K</Text>
+                <Text style={styles.txt}>200K-350K</Text>
+                <Text style={styles.txt}>100K-150K</Text>
+                </View>
             </View>
-
-
-            <View style={{ marginTop: 3, flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text style={{ width: 90 }}>Hemoglogbin</Text>
-                <Text style={{ width: 80 }}>{props.resultDetails.Hemoglobin}</Text>
-                <Text style={{ width: 80 }}>12-18</Text>
-            </View>
-            <View style={{ marginTop: 5, flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text style={{ width: 90 }}>Platelet</Text>
-                <Text style={{ width: 80 }}>{props.resultDetails.plateletCount}</Text>
-                <Text style={{ width: 80 }}>100K-450K</Text>
-            </View>
-            <View style={{ marginTop: 5, flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text style={{ width: 90 }}>WBC Count</Text>
-                <Text style={{ width: 80 }}>{props.resultDetails.whiteBloodCells}</Text>
-                <Text style={{ width: 80 }}>200K-350K</Text>
-            </View>
-            <View style={{ marginTop: 5, flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text style={{ width: 90 }}>RBC Count</Text>
-                <Text style={{ width: 80 }}>{props.resultDetails.redBloodCells}</Text>
-                <Text style={{ width: 80 }}>100K-150K</Text>
-            </View>
-
-
             <View style={{ marginTop: 10 }}>
-                <Text style={{ fontWeight: 'bold' }}>Comments</Text>
-                <Text>{props.resultDetails.comments}</Text>
+                <Text style={styles.heading}>Comments</Text>
+                <Text style={styles.txt}>{props.resultDetails.comments}</Text>
             </View>
-
+            <View style={{ marginTop: 10 }}>
+                <Text style={styles.heading}>Diet Plan</Text>
+                <Text style={styles.txt}>{props.resultDetails.dietPlan}</Text>
+            </View>
         </View>
     )
 }
@@ -61,7 +49,50 @@ const ReportCard = (props) => {
 export default ReportCard
 
 const styles = StyleSheet.create({
+midview:{
+    padding: 12, 
+    width: '96%', 
+    backgroundColor: '#FFFFFF',
+    marginTop: 20, 
+    shadowColor: "#000",
+    shadowOffset: {
+        width: 0,
+        height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
 
+    elevation: 5,
+    alignSelf:'center',
+    borderRadius:10,
+    marginBottom: 2,
+    
+},
+secview:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    marginVertical:5,
+    
+},
+childview:{
+    width:'30%',
+    height:130,
+     justifyContent:'space-between'
+},
+childview1:{
+    width:'23%',
+    height:130,
+     justifyContent:'space-between'
+},
+heading:{
+    color:'#504F4F',
+    fontSize:14,
+    fontWeight:'bold'
+},
+txt:{
+    color:'#828282',
+    fontSize:14
+}
 })
 
 
