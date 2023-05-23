@@ -5,7 +5,7 @@ import { Alert, Animated, StyleSheet, Text, TouchableOpacity, View } from 'react
 import React, { useRef, useState } from 'react'
 
 import Home from '../Home/Home';
-import { SvgBloodDonation, SvgCalender, SvgdonarTab, SvgHome, SvgProfile, SvgSearch, SvgSearchResult } from '../../components/svg';
+import { SvgBloodDonation, SvgCalender, SvgdonarTab, SvgHome, SvgProfile, SvgReport, SvgSearch, SvgSearchResult } from '../../components/svg';
 import Search from '../Search/Search';
 import SearchResult from '../SearchResult/SearchResult';
 import DonarHome from '../Donar/DonarHome';
@@ -13,6 +13,7 @@ import Appointment from '../Donar/Appointment';
 import Reports from '../Donar/Reports';
 import Profile from '../Profile/Profile';
 import Events from '../Donar/Events';
+import Ride from '../Donar/Ride';
 
 const Tab = createBottomTabNavigator()
 const DonarBottomTab = ({ navigation }) => {
@@ -92,7 +93,15 @@ const DonarBottomTab = ({ navigation }) => {
       <Tab.Screen name="Reports" component={Reports} options={{
         tabBarIcon: ({ focused }) => (
           <View style={{ alignItems: 'center', 'justifyContent': 'center' }}>
-            {focused ? <SvgBloodDonation color="#ff478c" /> : <SvgBloodDonation color="#BFBFBF" />}
+            {focused ? <SvgReport color="#ff478c" /> : <SvgReport color="#BFBFBF" />}
+          </View>
+        )
+      }}
+      />
+      <Tab.Screen name="Ride" component={Ride} options={{
+        tabBarIcon: ({ focused }) => (
+          <View style={{ alignItems: 'center', 'justifyContent': 'center' }}>
+            {focused ? <SvgReport color="#ff478c" /> : <SvgReport color="#BFBFBF" />}
           </View>
         )
       }}

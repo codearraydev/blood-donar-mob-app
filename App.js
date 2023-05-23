@@ -14,6 +14,9 @@ import PatientInfoNext from './src/Screens/Donar/PatientInfoNext';
 import CaseInfo from './src/Screens/Search/CaseInfo';
 import DonarDetail from './src/Screens/Donar/DonarDetail';
 import AppointmentDetail from './src/Screens/Donar/AppointmentDetail';
+import VolunteerRide from './src/Screens/Volunteer/VolunteerRide';
+import VolunteerTab from './src/Screens/BottomTabs/VolunteerTab';
+import VolunteerDecision from './src/Screens/Volunteer/VolunteerDecision';
 
 
 
@@ -35,6 +38,9 @@ const App =()=>{
             <Stack.Screen name="DonarDetail" component={DonarDetail} />
             <Stack.Screen name="CardDetailNext" component={CardDetailNext} />
             <Stack.Screen name="AppointmentDetail" component={AppointmentDetail} />
+            <Stack.Screen name="VolunteerRide" component={VolunteerRide} />
+            <Stack.Screen name="VolunteerTab" component={VolunteerTab} />
+            <Stack.Screen name="VolunteerDecision" component={VolunteerDecision} />
          </Stack.Navigator>
      </NavigationContainer>
   );

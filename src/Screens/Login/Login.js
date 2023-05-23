@@ -62,7 +62,12 @@ const Login = ({ navigation }) => {
                         setEmail('')
                         setPassword('')
                         navigation.navigate('BottomTabs')
-                    } else {
+                    } else if (result.data.role == 'volunteer') {
+                        setEmail('')
+                        setPassword('')
+                        navigation.navigate('VolunteerTab')
+                    } 
+                    else {
                         setEmail('')
                         setPassword('')
                         navigation.navigate('DonarBottomTabs')

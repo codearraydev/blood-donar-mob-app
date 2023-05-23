@@ -1,13 +1,15 @@
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, TextInput,Alert,ActivityIndicator} from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, TextInput, Alert, ActivityIndicator } from 'react-native'
+import React, { useState, useEffect } from 'react'
 import { SvgBackArrow, SvgBloodGroup, SvgCalender, SvgCardLine, SvgMap } from '../../components/svg';
 import LinearGradient from 'react-native-linear-gradient';
 import DateTimePicker from 'react-native-date-picker';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { getUserAsyncData } from '../../shared/core/DataStore';
+import MapView,{Marker } from 'react-native-maps';
 import moment from 'moment';
+import Geolocation from '@react-native-community/geolocation';
 
-const DonarDetail =  (props) => {
+const DonarDetail = (props) => {
     const [lastdonated, setLastDonated] = useState('')
     const [healthIssues, setHealthIssues] = useState('')
     const [appointmentDate, setAppointmentDate] = useState('')
@@ -23,7 +25,28 @@ const DonarDetail =  (props) => {
         { label: 'No', value: 'no' },
 
     ]);
+    const [position, setPosition] = useState({
+        latitude: 33.653032,
+        longitude: 73.157430,
+        latitudeDelta: 0.001,
+        longitudeDelta: 0.001,
+    });
 
+    useEffect(() => {
+        Geolocation.getCurrentPosition((pos) => {
+            const crd = pos.coords;
+            setPosition({
+                latitude: crd.latitude,
+                longitude: crd.longitude,
+                latitudeDelta: 0.0421,
+                longitudeDelta: 0.0421,
+            });
+        })
+        // .catch((err) => {
+        //   console.log(err);
+        // });
+    }, []);
+    console.log("RIDEE ", ridevalue)
     const acceptRequest = () => {
 
         getUserAsyncData().then((res => {
@@ -38,7 +61,9 @@ const DonarDetail =  (props) => {
                 "lastDonated": lastdonated,
                 "healthIssues": healthIssues,
                 "rideRequired": ridevalue,
-                "appointmentDate": appointmentDate
+                "appointmentDate": appointmentDate,
+                "lat":position.latitude.toString(),
+                "lng":position.longitude.toString()
             });
 
             var requestOptions = {
@@ -47,34 +72,34 @@ const DonarDetail =  (props) => {
                 body: raw,
                 redirect: 'follow'
             };
-            console.log("RAwww ",raw)
+            console.log("RAwww ", raw)
             fetch("https://us-central1-blood-donar-project.cloudfunctions.net/app/requestResponse", requestOptions)
                 .then(response => response.json())
                 .then(result => {
                     setLoading(false)
-if(result.status==1){
-    Alert.alert(
-        "Response",
-        result.message,
-        [
-          {
-            text: "OK",
-            onPress: () => {
-              props.navigation.navigate('PatientInfoNext');
-            },
-          },
-        ],
-        { cancelable: false }
-      );
+                    if (result.status == 1) {
+                        Alert.alert(
+                            "Response",
+                            result.message,
+                            [
+                                {
+                                    text: "OK",
+                                    onPress: () => {
+                                        props.navigation.navigate('PatientInfoNext');
+                                    },
+                                },
+                            ],
+                            { cancelable: false }
+                        );
 
-}
-else{
-    Alert.alert(result.message)
-}
-                    
+                    }
+                    else {
+                        Alert.alert(result.message)
+                    }
 
 
-                    console.log("Donar ",result)
+
+                    console.log("Donar ", result)
                 })
                 .catch(error => {
                     setLoading(false)
@@ -129,7 +154,7 @@ else{
                             placeholder="Enter Health Issues"
                             placeholderTextColor={'grey'}
                             value={healthIssues}
-                          
+
                             onChangeText={text => setHealthIssues(text)}
 
 
@@ -139,7 +164,7 @@ else{
                         <Text style={styles.txt}>
                             Ride Required
                         </Text>
-                        <DropDownPicker style={[styles.tinput, { minHeight: 20,}]}
+                        <DropDownPicker style={[styles.tinput, { minHeight: 20, }]}
                             containerProps={{
                                 //height:30
                             }}
@@ -186,10 +211,28 @@ else{
                             />
                         )}
                     </View>
+                    {(ridevalue == "yes") ?
+                        <MapView
+                            style={{ height: 200, width: 300 }}
+                            initialRegion={{
+                                latitude: position.latitude,
+                                longitude: position.longitude,
+                                latitudeDelta: 0.0922,
+                                longitudeDelta: 0.0421,
+
+                            }}
+
+                        >
+                            <Marker
+                                coordinate={{ latitude: position.latitude, longitude: position.longitude }}
+                                // image={{ uri: 'custom_pin' }}
+                            />
+                        </MapView>
+                        : null}
                 </View>
                 <TouchableOpacity style={styles.continuebtn} onPress={() => acceptRequest()}>
-                <Text style={styles.continuetxt}> {loading ? <ActivityIndicator color={'white'} /> : 'Accept Request'}</Text>
-                    
+                    <Text style={styles.continuetxt}> {loading ? <ActivityIndicator color={'white'} /> : 'Accept Request'}</Text>
+
                 </TouchableOpacity>
             </LinearGradient>
         </SafeAreaView>
@@ -289,5 +332,5 @@ const styles = StyleSheet.create({
         //fontFamily: 'Nunito Sans',
         fontWeight: '700'
     },
-   
+
 })
