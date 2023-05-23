@@ -6,9 +6,11 @@ import { emailValidator, passwordloginValidator } from '../../shared/validators/
 import { SvgFacebook, SvgGoogle, SvgLine, SvgLogo } from './../../components/svg'
 import { getUserAsyncData, setUserAsyncData } from '../../shared/core/DataStore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import firestore from '@react-native-firebase/firestore'
+import '@react-native-firebase/auth'
 const Login = ({ navigation }) => {
 
-
+    // var db = firestore()
 
 
     const [email, setEmail] = useState('')
@@ -57,7 +59,8 @@ const Login = ({ navigation }) => {
 
                 setUserAsyncData(result.data).then(res => {
                     // Alert.alert("Data saved success...!!!")
-
+                    console.log("TOKENN ",result.data.fbtoken)
+                    // db.app.auth().signInWithCustomToken(result.data.fbtoken).then(authRes=>{console.log("auth ",authRes)}).catch(error=>{console.log("FIREBASE ",error)})
                     if (result.data.role == 'reciver') {
                         setEmail('')
                         setPassword('')

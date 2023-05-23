@@ -5,7 +5,7 @@ import { Alert, Animated, StyleSheet, Text, TouchableOpacity, View } from 'react
 import React, { useRef, useState } from 'react'
 
 import Home from '../Home/Home';
-import { SvgBloodDonation, SvgCalender, SvgdonarTab, SvgHome, SvgProfile, SvgReport, SvgSearch, SvgSearchResult } from '../../components/svg';
+import { SvgBloodDonation, SvgCalender, SvgdonarTab, SvgHome, SvgProfile, SvgReport, SvgRide, SvgSearch, SvgSearchResult } from '../../components/svg';
 import Search from '../Search/Search';
 import SearchResult from '../SearchResult/SearchResult';
 import DonarHome from '../Donar/DonarHome';
@@ -101,7 +101,7 @@ const DonarBottomTab = ({ navigation }) => {
       <Tab.Screen name="Ride" component={Ride} options={{
         tabBarIcon: ({ focused }) => (
           <View style={{ alignItems: 'center', 'justifyContent': 'center' }}>
-            {focused ? <SvgReport color="#ff478c" /> : <SvgReport color="#BFBFBF" />}
+            {focused ? <SvgRide color="#ff478c" /> : <SvgRide color="#BFBFBF" />}
           </View>
         )
       }}

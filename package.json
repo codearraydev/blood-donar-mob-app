@@ -12,6 +12,9 @@
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.18.1",
     "@react-native-community/geolocation": "^3.0.6",
+    "@react-native-firebase/app": "^17.5.0",
+    "@react-native-firebase/auth": "^17.5.0",
+    "@react-native-firebase/firestore": "^17.5.0",
     "@react-native-masked-view/masked-view": "^0.2.9",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/material-bottom-tabs": "^6.2.15",
@@ -20,6 +23,7 @@
     "moment": "^2.29.4",
     "react": "18.2.0",
     "react-native": "0.71.7",
+    "react-native-auto-scroll": "^0.0.1",
     "react-native-date-picker": "^4.2.13",
     "react-native-dropdown-picker": "^5.4.6",
     "react-native-gesture-handler": "^2.9.0",

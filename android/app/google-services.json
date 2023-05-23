@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1033388437011",
+    "project_id": "blood-donar-project",
+    "storage_bucket": "blood-donar-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033388437011:android:2f1990ceca2e79b94a99e6",
+        "android_client_info": {
+          "package_name": "com.tbh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1033388437011-8hrbf88gs9gjr78t028tp6d1rcl42m9k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZxs3awOgImiFEcMHoRsEufM_lJf_weVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1033388437011-8hrbf88gs9gjr78t028tp6d1rcl42m9k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

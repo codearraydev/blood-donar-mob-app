@@ -57,7 +57,8 @@ const UpComingEvents = (props) => {
                 <Text style={styles.detailtxt}>
                     {props.eventsDetails.eventName}
                 </Text>
-               {(props.eventsDetails.joinedByDonor == "no")? <TouchableOpacity style={styles.uview} onPress={() => joinEvent()}>
+               {(props.eventsDetails.joinedByDonor == "no")? 
+               <TouchableOpacity style={styles.uview} onPress={() => joinEvent()}>
                    
                     <Text style={styles.utxt}> {loading ? <ActivityIndicator color={'#4ca400'} /> : 'join now'}</Text>
                 </TouchableOpacity>:

@@ -17,6 +17,7 @@ import AppointmentDetail from './src/Screens/Donar/AppointmentDetail';
 import VolunteerRide from './src/Screens/Volunteer/VolunteerRide';
 import VolunteerTab from './src/Screens/BottomTabs/VolunteerTab';
 import VolunteerDecision from './src/Screens/Volunteer/VolunteerDecision';
+import ChatScreen from './src/Screens/Chat/ChatScreen';
 
 
 
@@ -41,6 +42,7 @@ const App =()=>{
             <Stack.Screen name="VolunteerRide" component={VolunteerRide} />
             <Stack.Screen name="VolunteerTab" component={VolunteerTab} />
             <Stack.Screen name="VolunteerDecision" component={VolunteerDecision} />
+            <Stack.Screen name="ChatScreen" component={ChatScreen} />
          </Stack.Navigator>
      </NavigationContainer>
   );
